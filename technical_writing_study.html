@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Writing - Study Guide & Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface2: #1a2235;
+  --accent: #3b82f6;
+  --accent2: #06b6d4;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #1e3a5f;
+  --glow: 0 0 20px rgba(59,130,246,0.3);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  direction: rtl;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, #0a0e1a 0%, #1a2235 50%, #0d1b2e 100%);
+  border-bottom: 2px solid var(--accent);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 50% -20%, rgba(59,130,246,0.15) 0%, transparent 70%);
+}
+
+header h1 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+header p {
+  color: var(--text-muted);
+  margin-top: .5rem;
+  font-size: 1rem;
+  position: relative;
+}
+
+/* ===== NAV ===== */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  padding: .8rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav button {
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  font-family: 'Cairo', sans-serif;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+nav button:hover, nav button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+/* ===== MAIN ===== */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.section-page { display: none; animation: fadeIn .3s ease; }
+.section-page.active { display: block; }
+
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ===== LECTURE CONTENT ===== */
+.lecture-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.lecture-header {
+  background: linear-gradient(90deg, var(--surface2), var(--surface));
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.lecture-num {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.lecture-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lecture-subtitle {
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+.toggle-icon {
+  margin-right: auto;
+  font-size: 1.2rem;
+  color: var(--accent);
+  transition: transform .3s;
+}
+
+.lecture-body {
+  padding: 1.5rem;
+  display: none;
+}
+
+.lecture-body.open { display: block; }
+
+.toggle-icon.open { transform: rotate(180deg); }
+
+/* Content styles */
+h2.content-h { color: var(--accent2); font-size: 1.2rem; margin: 1.5rem 0 .8rem; border-right: 4px solid var(--accent); padding-right: .8rem; }
+h3.content-h3 { color: var(--gold); font-size: 1rem; margin: 1rem 0 .5rem; }
+p.content-p { color: var(--text); line-height: 1.8; margin-bottom: .8rem; font-size: .95rem; }
+ul.content-ul { list-style: none; padding-right: 1rem; }
+ul.content-ul li { color: var(--text); line-height: 1.8; font-size: .95rem; padding: .2rem 0; position: relative; padding-right: 1.5rem; }
+ul.content-ul li::before { content: '◆'; color: var(--accent); position: absolute; right: 0; font-size: .7rem; top: .5rem; }
+
+.highlight-box {
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+}
+
+.warning-box {
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+}
+
+.steps-list {
+  counter-reset: step;
+  list-style: none;
+  padding-right: 0;
+}
+
+.steps-list li {
+  counter-increment: step;
+  padding: .6rem .8rem .6rem 0;
+  padding-right: 2.5rem;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: .95rem;
+}
+
+.steps-list li::before {
+  content: counter(step);
+  position: absolute;
+  right: 0;
+  background: var(--accent);
+  color: #fff;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  font-weight: 700;
+  top: .7rem;
+}
+
+.table-style {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: .9rem;
+}
+
+.table-style th {
+  background: var(--accent);
+  color: #fff;
+  padding: .7rem 1rem;
+  text-align: right;
+}
+
+.table-style td {
+  padding: .7rem 1rem;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.table-style tr:nth-child(even) td { background: var(--surface2); }
+
+/* ===== QUIZ ===== */
+.quiz-section { }
+
+.quiz-header {
+  background: linear-gradient(135deg, var(--surface), var(--surface2));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.quiz-header h2 {
+  font-size: 1.4rem;
+  color: var(--accent2);
+  margin-bottom: .5rem;
+}
+
+.quiz-stats {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.stat-badge {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  font-size: .9rem;
+}
+
+.stat-badge span { color: var(--accent); font-weight: 700; }
+
+.question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  transition: border-color .2s;
+}
+
+.question-card:hover { border-color: var(--accent); }
+
+.q-type-badge {
+  display: inline-block;
+  padding: .2rem .7rem;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+  margin-bottom: .8rem;
+}
+
+.badge-mcq { background: rgba(59,130,246,0.2); color: var(--accent); border: 1px solid rgba(59,130,246,0.4); }
+.badge-tf { background: rgba(16,185,129,0.2); color: var(--green); border: 1px solid rgba(16,185,129,0.4); }
+.badge-fill { background: rgba(245,158,11,0.2); color: var(--gold); border: 1px solid rgba(245,158,11,0.4); }
+.badge-theory { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid rgba(239,68,68,0.4); }
+
+.q-text {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.q-num {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: .3rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+.option-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .7rem 1rem;
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: .9rem;
+  cursor: pointer;
+  text-align: right;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.option-btn:hover { border-color: var(--accent); background: rgba(59,130,246,0.08); }
+.option-btn.correct { border-color: var(--green); background: rgba(16,185,129,0.12); color: var(--green); }
+.option-btn.wrong { border-color: var(--red); background: rgba(239,68,68,0.12); color: var(--red); }
+
+.option-letter {
+  background: var(--border);
+  color: var(--text-muted);
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: .85rem;
+  flex-shrink: 0;
+}
+
+.show-answer-btn {
+  background: linear-gradient(135deg, var(--surface2), var(--surface));
+  border: 1px dashed var(--accent);
+  color: var(--accent);
+  padding: .6rem 1.2rem;
+  border-radius: 8px;
+  font-family: 'Cairo', sans-serif;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.show-answer-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-style: solid;
+}
+
+.answer-reveal {
+  display: none;
+  margin-top: 1rem;
+  background: rgba(16,185,129,0.08);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.answer-reveal.visible { display: block; animation: fadeIn .3s; }
+
+.answer-label {
+  color: var(--green);
+  font-weight: 700;
+  font-size: .9rem;
+  margin-bottom: .4rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.answer-text {
+  color: var(--text);
+  font-size: .95rem;
+  line-height: 1.7;
+}
+
+.fill-input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .6rem 1rem;
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: .9rem;
+  width: 100%;
+  margin-bottom: .8rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.fill-input:focus { border-color: var(--accent); }
+
+.theory-area {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .8rem 1rem;
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: .9rem;
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: .8rem;
+  outline: none;
+  resize: vertical;
+  transition: border-color .2s;
+}
+
+.theory-area:focus { border-color: var(--accent); }
+
+.quiz-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.ctrl-btn {
+  padding: .8rem 1.8rem;
+  border-radius: 10px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all .2s;
+}
+
+.ctrl-btn.primary { background: var(--accent); color: #fff; }
+.ctrl-btn.primary:hover { background: #2563eb; box-shadow: var(--glow); }
+.ctrl-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+.ctrl-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+.filter-bar {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.filter-btn {
+  padding: .4rem .9rem;
+  border-radius: 20px;
+  font-family: 'Cairo', sans-serif;
+  font-size: .85rem;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text-muted);
+  transition: all .2s;
+}
+
+.filter-btn.active-filter { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.score-display {
+  background: linear-gradient(135deg, var(--surface), var(--surface2));
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+  display: none;
+}
+
+.score-display.show { display: block; animation: fadeIn .5s; }
+.score-number { font-size: 3rem; font-weight: 900; color: var(--gold); }
+.score-label { color: var(--text-muted); font-size: 1rem; margin-top: .5rem; }
+
+/* Progress bar */
+.progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 3px;
+  transition: width .4s;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px) {
+  header h1 { font-size: 1.6rem; }
+  .lecture-title { font-size: 1rem; }
+  .q-text { font-size: .95rem; }
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+.tag {
+  display: inline-block;
+  background: rgba(6,182,212,0.15);
+  color: var(--accent2);
+  border: 1px solid rgba(6,182,212,0.3);
+  border-radius: 6px;
+  padding: .15rem .6rem;
+  font-size: .8rem;
+  margin: .1rem;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 Technical Writing – دليل الدراسة الشامل</h1>
+  <p>Assoc. Prof. Dr. Amr Abo Hani &nbsp;|&nbsp; Dr. Ebtsam Adel</p>
+</header>
+
+<nav id="mainNav">
+  <button onclick="showPage('home')" class="active" id="nav-home">🏠 الرئيسية</button>
+  <button onclick="showPage('lec1')" id="nav-lec1">📖 م1 – مقدمة</button>
+  <button onclick="showPage('lec2')" id="nav-lec2">📖 م2 – هيكل التقرير</button>
+  <button onclick="showPage('lec3')" id="nav-lec3">📖 م3 – جمع المعلومات</button>
+  <button onclick="showPage('lec4')" id="nav-lec4">📖 م4 – الكتابة والمراجعة</button>
+  <button onclick="showPage('lec5')" id="nav-lec5">📖 م5 – التنسيق</button>
+  <button onclick="showPage('lec6')" id="nav-lec6">📖 م6 – العروض والبيانات</button>
+  <button onclick="showPage('lec7')" id="nav-lec7">📖 م7 – LaTeX</button>
+  <button onclick="showPage('lec8')" id="nav-lec8">📖 م8 – أنواع التقارير</button>
+  <button onclick="showPage('quiz')" id="nav-quiz">🎯 بنك الأسئلة</button>
+</nav>
+
+<main>
+
+<!-- ============== HOME ============== -->
+<div class="section-page active" id="page-home">
+  <div class="lecture-card">
+    <div class="lecture-header" style="cursor:default">
+      <div class="lecture-num">🎓</div>
+      <div>
+        <div class="lecture-title">مرحباً بك في دليل الدراسة الشامل</div>
+        <div class="lecture-subtitle">Technical Report Writing – 8 محاضرات + بنك أسئلة تفاعلي</div>
+      </div>
+    </div>
+    <div class="lecture-body open">
+      <p class="content-p">هذا الموقع يحتوي على شرح تفصيلي لكل محاضرة مع أسئلة متنوعة (اختيار من متعدد – صح وغلط – أكمل الفراغ – نظري) مع زر إظهار الإجابة لاختبار نفسك.</p>
+      <div class="highlight-box">
+        <h3 class="content-h3">📋 محتوى المقرر</h3>
+        <ul class="content-ul">
+          <li>المحاضرة 1 – مقدمة في Technical Writing وأهميته</li>
+          <li>المحاضرة 2 – التحضير والتخطيط وهيكل التقرير</li>
+          <li>المحاضرة 3 – جمع ومعالجة المعلومات</li>
+          <li>المحاضرة 4 – الكتابة والمراجعة والـ Proofreading</li>
+          <li>المحاضرة 5 – التنسيق (النص والصفحة)</li>
+          <li>المحاضرة 6 – مهارات العرض وطرق تقديم البيانات</li>
+          <li>المحاضرة 7 – مقدمة في LaTeX</li>
+          <li>المحاضرة 8 – أنواع التقارير الشائعة</li>
+        </ul>
+      </div>
+      <div class="warning-box">
+        <strong>💡 نصيحة:</strong> اقرأ الشرح أولاً ثم اذهب إلى بنك الأسئلة وجاوب بدون النظر للإجابة، ثم اضغط "أظهر الإجابة" للتحقق.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 1 ============== -->
+<div class="section-page" id="page-lec1">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">1</div>
+      <div>
+        <div class="lecture-title">مقدمة في Technical Writing</div>
+        <div class="lecture-subtitle">تعريف الكتابة التقنية – أنواع الكتابة – لماذا التقرير التقني؟ – التحضير والتخطيط</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 ما هي الكتابة التقنية؟ (Technical Writing)</h2>
+      <p class="content-p">الكتابة التقنية هي <strong>فن وعلم الكتابة</strong> المتخصص في إعطاء تفاصيل دقيقة حول كيفية عمل الأشياء، وتحضير الآخرين من خلال التوثيق لتنفيذ مهام محددة وتحقيق الأهداف المطلوبة.</p>
+      <div class="highlight-box">
+        <h3 class="content-h3">المفاهيم الأساسية في Technical Writing:</h3>
+        <ul class="content-ul">
+          <li><strong>شرح النظام أو التصميم</strong> – توضيح كيفية عمل الأنظمة</li>
+          <li><strong>وصف المهام وأهداف الأداء</strong> – تحديد ما يجب القيام به</li>
+          <li><strong>تقديم التدريب والخبرة المتخصصة</strong> – مساعدة الآخرين على الفهم</li>
+        </ul>
+      </div>
+
+      <h2 class="content-h">🔷 أنواع الكتابة (Types of Writing)</h2>
+      <div class="table-style" style="overflow-x:auto">
+        <table class="table-style">
+          <tr><th>النوع</th><th>الهدف</th></tr>
+          <tr><td><strong>Narrative Writing</strong> (السردية)</td><td>رواية قصة سواء كانت حقيقية أو خيالية</td></tr>
+          <tr><td><strong>Descriptive Writing</strong> (الوصفية)</td><td>مساعدة القارئ على تصور شخصية أو حدث أو مكان</td></tr>
+          <tr><td><strong>Persuasive Writing</strong> (الإقناعية)</td><td>التأثير على القارئ لتبني وجهة نظر الكاتب</td></tr>
+          <tr><td><strong>Expository Writing</strong> (الاستعراضية)</td><td>عرض الحقائق والمعلومات الموضوعية</td></tr>
+        </table>
+      </div>
+
+      <h2 class="content-h">🔷 لماذا التقرير التقني؟ (Why Technical Report?)</h2>
+      <ul class="content-ul">
+        <li><strong>Enhance Communication Skills</strong> – تطوير مهارات التواصل</li>
+        <li><strong>Propagate the knowledge</strong> – نشر المعرفة</li>
+        <li><strong>Building on existing knowledge</strong> – البناء على المعرفة الموجودة</li>
+        <li><strong>Team members / co-workers</strong> – التواصل مع أعضاء الفريق</li>
+        <li><strong>Making intelligent decisions</strong> – اتخاذ قرارات ذكية مبنية على بيانات</li>
+        <li><strong>Good project work could be rejected by a poor report</strong> – مشروع ممتاز قد يُرفض بسبب تقرير رديء!</li>
+      </ul>
+
+      <h2 class="content-h">🔷 مراحل التحضير والتخطيط (Preparation & Planning)</h2>
+      <div class="warning-box">
+        <strong>⚠️ قاعدة ذهبية:</strong> "To fail to prepare is to prepare to fail" – الفشل في التحضير هو التحضير للفشل
+      </div>
+      <p class="content-p">قبل أن تكتب كلمة واحدة يجب عليك:</p>
+      <ol class="steps-list">
+        <li><strong>Set your objective</strong> – حدد هدفك بدقة</li>
+        <li><strong>Assess your readership</strong> – قيّم جمهور القراء (جمهور القراء = readership)</li>
+        <li><strong>Decide what information you will need</strong> – حدد المعلومات المطلوبة</li>
+        <li><strong>Prepare your skeletal framework</strong> – أعدّ الهيكل العظمي للتقرير</li>
+        <li><strong>Test and revise your skeletal framework</strong> – اختبر وراجع الهيكل</li>
+      </ol>
+
+      <h2 class="content-h">🔷 تحديد الهدف (Set Your Objective)</h2>
+      <p class="content-p">من الضروري تحديد هدف دقيق ومحدد. الهدف الواضح يساعدك على:</p>
+      <ul class="content-ul">
+        <li>تحديد المعلومات التي تُدرجها وتلك التي تستبعدها</li>
+        <li>كتابة التقرير بالمستوى الصحيح</li>
+        <li>تسهيل عملية الكتابة</li>
+      </ul>
+      <h3 class="content-h3">الأهداف المحتملة للتقرير:</h3>
+      <ul class="content-ul">
+        <li>to <strong>inform</strong> – الإخبار والإعلام</li>
+        <li>to <strong>describe</strong> – الوصف</li>
+        <li>to <strong>explain</strong> – الشرح</li>
+        <li>to <strong>instruct</strong> – التوجيه (توجيه)</li>
+        <li>to <strong>evaluate</strong> (and recommend) – التقييم والتوصية</li>
+        <li>to <strong>persuade</strong> – الإقناع (إقناع)</li>
+      </ul>
+
+      <h2 class="content-h">🔷 تقييم جمهور القراء (Assess Your Readership)</h2>
+      <p class="content-p">يجب أن تعرف من يقرأ تقريرك وتحدد:</p>
+      <ul class="content-ul">
+        <li>هل القراء متشابهون أم متنوعون؟</li>
+        <li>هل اعتادوا على قراءة وفهم التقارير؟</li>
+        <li>كم من الوقت سيقضون على هذا التقرير؟</li>
+        <li>ماذا يعرفون بالفعل؟</li>
+        <li>ماذا يحتاجون أن يعرفوا أكثر؟</li>
+      </ul>
+
+      <h2 class="content-h">🔷 الهيكل العظمي للتقرير (Skeletal Framework)</h2>
+      <p class="content-p">هو مثل رسم المخططات لبناء منزل جديد – يوضح البنية الكاملة ويذكرك بالمواد (المعلومات) التي تحتاجها. ثلاث مراحل لإعداده:</p>
+      <ol class="steps-list">
+        <li><strong>Write a working title</strong> – عنوان وظيفي (وليس إبداعياً)</li>
+        <li><strong>Consider the overall structure</strong> – تفكير في البنية العامة</li>
+        <li><strong>Consider how information will be presented within the main body</strong> – كيفية تقديم المعلومات داخل الجسم الرئيسي</li>
+      </ol>
+
+      <h2 class="content-h">🔷 البنية العامة للتقرير</h2>
+      <div class="table-style" style="overflow-x:auto">
+        <table class="table-style">
+          <tr><th>البداية (Beginning)</th><th>الوسط (Middle)</th><th>النهاية (End)</th></tr>
+          <tr>
+            <td>Title page<br>Foreword<br>Preface<br>Acknowledgements<br>Contents page<br>Summary or Abstract<br>Introduction</td>
+            <td>Main body (including substructures)</td>
+            <td>Conclusions<br>Recommendations<br>Appendixes<br>References<br>Bibliography<br>Glossary<br>Index</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 2 ============== -->
+<div class="section-page" id="page-lec2">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">2</div>
+      <div>
+        <div class="lecture-title">هيكل التقرير التفصيلي</div>
+        <div class="lecture-subtitle">مكونات التقرير – اختبارات الهيكل العظمي – الجسم الرئيسي</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 مكونات التقرير بالتفصيل</h2>
+
+      <h3 class="content-h3">📌 Title Page (صفحة العنوان)</h3>
+      <p class="content-p">كل تقرير يجب أن يحتوي على صفحة عنوان تشمل:</p>
+      <ul class="content-ul">
+        <li>The title – العنوان (واضح ومختصر وذو صلة)</li>
+        <li>اسم وموقع الشخص الذي أذن بالتقرير</li>
+        <li>اسم المنظمة</li>
+        <li>تاريخ إصدار التقرير</li>
+        <li>رقم مرجعي (Reference number)</li>
+        <li>معلومات حقوق النشر (إن لزم)</li>
+        <li>درجة السرية (Confidentiality)</li>
+        <li>قائمة التوزيع (Distribution list)</li>
+      </ul>
+
+      <h3 class="content-h3">📌 Foreword (التمهيد)</h3>
+      <p class="content-p">نادراً ما يُستخدم في التقارير. عندما يُدرج فإنه لا يكتبه كاتب التقرير عادةً، بل يكتبه خبير معترف به في المجال. يجب أن يكون <strong>موجزاً (concise)</strong>.</p>
+
+      <h3 class="content-h3">📌 Preface (المقدمة الشخصية)</h3>
+      <p class="content-p">مكون غير شائع أيضاً. يُستخدم عندما يريد الكاتب توضيح بعض التفاصيل الشخصية وراء إنتاج التقرير.</p>
+
+      <h3 class="content-h3">📌 Acknowledgements (الشكر والتقدير)</h3>
+      <p class="content-p">يُستخدم للتعبير عن الشكر للأشخاص والمنظمات الذين ساعدوا في إعداد التقرير.</p>
+
+      <h3 class="content-h3">📌 Contents Page (صفحة المحتويات)</h3>
+      <p class="content-p">ضرورية لأي تقرير يتجاوز <strong>ثلاث صفحات</strong>. تكون على ورقة منفصلة وتدرج الأقسام بالترتيب الذي تظهر فيه. تشمل أيضاً: قائمة الأشكال، قائمة الجداول، قائمة الاختصارات.</p>
+
+      <h3 class="content-h3">📌 Summary / Abstract (الملخص)</h3>
+      <p class="content-p">مفيد بشكل خاص عند وجود جمهور متنوع. له وظيفتان:</p>
+      <ul class="content-ul">
+        <li>تقديم ملخص دقيق لما سيقرأه المستلم أو قرأه للتو</li>
+        <li>تقديم مخطط للتقرير إذا لم يكن المستلم سيقرأ التقرير بالكامل</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>هيكل الملخص الجيد (5 فقرات):</strong>
+        <ol class="steps-list">
+          <li>Intention – الغرض والنطاق</li>
+          <li>Outline – ما تم فعله وكيف</li>
+          <li>Main findings (results) – النتائج الرئيسية</li>
+          <li>Main conclusions – الاستنتاجات الرئيسية</li>
+          <li>Main recommendations – التوصيات الرئيسية (إن لزم)</li>
+        </ol>
+        <p style="color:var(--gold);margin-top:.5rem"><strong>⚠️ مهم:</strong> يُكتب الملخص آخراً وليس أولاً!</p>
+      </div>
+
+      <h3 class="content-h3">📌 Introduction (المقدمة)</h3>
+      <p class="content-p">تُهيئ المشهد للقارئ. مقدمة جيدة تشمل:</p>
+      <ul class="content-ul">
+        <li>لماذا كُتب التقرير؟ من طلبه ومتى؟</li>
+        <li>ما هي شروط المرجعية (Terms of Reference)؟</li>
+        <li>ما الموارد المتاحة؟</li>
+        <li>ما القيود التي عملت تحتها؟</li>
+        <li>ما مصادر المعلومات؟</li>
+        <li>ما أساليب العمل؟</li>
+        <li>كيف هيكل التقرير ولماذا اختُرت هذه الطريقة؟</li>
+      </ul>
+
+      <h3 class="content-h3">📌 Conclusions (الاستنتاجات)</h3>
+      <p class="content-p">تربط شروط المرجعية بالنتائج. يجب أن تكون:</p>
+      <ul class="content-ul">
+        <li>مذكورة بوضوح وبساطة</li>
+        <li>موضوعية وغير مبالغ فيها</li>
+        <li>مكتوبة مع وضع التأثير على القارئ في الاعتبار</li>
+      </ul>
+
+      <h3 class="content-h3">📌 Recommendations (التوصيات)</h3>
+      <ul class="content-ul">
+        <li>لا تُقدم توصيات إلا إذا منحتك شروط المرجعية صلاحية ذلك</li>
+        <li>الاستنتاجات تُشير للماضي والحاضر، أما التوصيات فتنظر إلى <strong>المستقبل</strong></li>
+        <li>يجب أن تنبثق منطقياً من الاستنتاجات (no surprises)</li>
+      </ul>
+
+      <h3 class="content-h3">📌 Appendixes (الملاحق)</h3>
+      <p class="content-p">غرضها تكملة المعلومات الواردة في الجسم الرئيسي. طريقة لتوفير تفاصيل كافية للقراء الذين يحتاجونها دون تعطيل سرد الجسم الرئيسي.</p>
+
+      <h3 class="content-h3">📌 References (المراجع)</h3>
+      <p class="content-p">يقدم تفاصيل كاملة للكتب أو الدوريات المذكورة تحديداً في النص. تُدرج بنفس <strong>ترتيب</strong> ورودها في التقرير. بعض الكتّاب يفضلون استخدام <strong>Footnotes</strong> بدلاً من قسم المراجع.</p>
+      <div class="warning-box"><strong>أدوات إدارة المراجع:</strong> Mendeley | Zotero | EndNote</div>
+
+      <h3 class="content-h3">📌 Bibliography (قائمة المصادر)</h3>
+      <p class="content-p">تشمل كل المنشورات المشار إليها في النص. على عكس References قد تشمل أيضاً كتباً ودوريات <strong>لم يُشر إليها</strong>. مفيدة عند وجود جمهور متنوع.</p>
+
+      <h3 class="content-h3">📌 Glossary (قاموس المصطلحات)</h3>
+      <p class="content-p">ضروري عند استخدام كميات كبيرة من المفردات المتخصصة أو التقنية. أداة مفيدة لمساعدة جمهور متنوع بعضهم يعرف المصطلحات وبعضهم لا.</p>
+
+      <h3 class="content-h3">📌 Index (الفهرس)</h3>
+      <p class="content-p">ضروري فقط للتقارير <strong>الكبيرة</strong>. يحتوي على إدخالات أكثر من صفحة المحتويات. يُقدم أبجدياً ويُوضع في <strong>نهاية</strong> التقرير. يمكن تقديمه في عمودين أو ثلاثة.</p>
+
+      <h2 class="content-h">🔷 اختبارات الهيكل العظمي (Testing the Skeletal Framework)</h2>
+      <ol class="steps-list">
+        <li><strong>Necessity test</strong> – هل كل مكون ضروري؟ (مثلاً: هل Glossary ضروري إذا كان الجميع يعرف المصطلحات؟ لا!)</li>
+        <li><strong>Inclusion test</strong> – هل جميع العناصر المناسبة مدرجة في القسم؟</li>
+        <li><strong>Exclusion test</strong> – هل العناصر غير المناسبة مستبعدة؟</li>
+        <li><strong>Hierarchy test</strong> – هل العناصر متوازية هرمياً؟ (العناوين بنفس المرتبة تمثل موضوعات بنفس الأهمية)</li>
+        <li><strong>Sequence test</strong> – هل العناصر في التسلسل الصحيح؟ (verb type أو noun type)</li>
+        <li><strong>Language test</strong> – هل العناصر متوازية نحوياً؟ (مثلاً: كلها أفعال تنتهي بـ -ing)</li>
+        <li><strong>Numbering test</strong> – هل نظام الترقيم مناسب ومتسق؟</li>
+      </ol>
+
+      <h2 class="content-h">🔷 الجسم الرئيسي (The Main Body)</h2>
+      <p class="content-p">يجب أن يُقدم المعلومات بشكل يجده القراء مقبولاً ومفهوماً. المستويات المختلفة من الفئات تُنظم في تسلسل هرمي:</p>
+      <ul class="content-ul">
+        <li><strong>Level 1</strong>: الفئات الواسعة (المجالات الرئيسية)</li>
+        <li><strong>Level 2</strong>: النتائج التفصيلية التي تغطي كل مجال رئيسي</li>
+      </ul>
+      <p class="content-p">الفئات نوعان: <strong>Verbs</strong> (تتعلق بتسلسلات وأفعال وأحداث) و<strong>Nouns</strong> (تتعلق بأشخاص وأماكن وأفكار).</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 3 ============== -->
+<div class="section-page" id="page-lec3">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">3</div>
+      <div>
+        <div class="lecture-title">جمع ومعالجة المعلومات</div>
+        <div class="lecture-subtitle">Collecting and Handling Information</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 مراحل البحث</h2>
+      <ol class="steps-list">
+        <li>Locate sources of relevant information – تحديد مصادر المعلومات</li>
+        <li>Obtain the information – الحصول على المعلومات</li>
+        <li>Sort and group your findings – فرز وتجميع النتائج</li>
+        <li>Evaluate your findings – تقييم النتائج</li>
+        <li>Prioritizing your findings – تحديد أولويات النتائج (تحديد الأولويات)</li>
+        <li>Check your findings – التحقق من النتائج</li>
+      </ol>
+
+      <h2 class="content-h">🔷 مصادر المعلومات (Sources of Information)</h2>
+      <ul class="content-ul">
+        <li><strong>People</strong> – الأشخاص</li>
+        <li><strong>Books and other publications</strong> – الكتب والمنشورات</li>
+        <li><strong>Information technology</strong> – التكنولوجيا (صفحات الويب…)</li>
+        <li><strong>Events and places</strong> – الأحداث والأماكن</li>
+      </ul>
+
+      <h2 class="content-h">🔷 طرق جمع المعلومات (Obtaining the Information)</h2>
+      <ul class="content-ul">
+        <li>Experimentation – التجريب</li>
+        <li>Reading – القراءة</li>
+        <li>Listening – الاستماع</li>
+        <li>Observation – المراقبة</li>
+        <li>Interview – المقابلة</li>
+        <li>Letter – الرسالة</li>
+        <li>Telephone call – المكالمة الهاتفية</li>
+        <li>Questionnaire – الاستبيان</li>
+        <li>Research on the Internet – البحث على الإنترنت</li>
+      </ul>
+
+      <h2 class="content-h">🔷 طريقة SQ3R للقراءة</h2>
+      <div class="highlight-box">
+        <table class="table-style">
+          <tr><th>الحرف</th><th>الخطوة</th><th>الشرح</th></tr>
+          <tr><td><strong style="color:var(--accent)">S</strong></td><td>Survey</td><td>تصفح المادة للحصول على فكرة عامة (5-10 دقائق)</td></tr>
+          <tr><td><strong style="color:var(--accent)">Q</strong></td><td>Question</td><td>حوّل العناوين إلى أسئلة قبل القراءة</td></tr>
+          <tr><td><strong style="color:var(--accent)">R1</strong></td><td>Read</td><td>اقرأ الملخصات أولاً، ثم القسم سريعاً، ثم ببطء للفهم</td></tr>
+          <tr><td><strong style="color:var(--accent)">R2</strong></td><td>Recall</td><td>تذكر الأفكار والحقائق الرئيسية وسجّلها</td></tr>
+          <tr><td><strong style="color:var(--accent)">R3</strong></td><td>Review</td><td>هل حصلت على ما توقعته من القراءة؟</td></tr>
+        </table>
+      </div>
+
+      <h3 class="content-h3">Survey – كيف تتصفح بفاعلية:</h3>
+      <ul class="content-ul">
+        <li>اقرأ المقدمة</li>
+        <li>انظر إلى العناوين والعناوين الفرعية</li>
+        <li>انظر إلى الصور والمخططات والرسوم البيانية</li>
+        <li>اقرأ ملخص الفصل</li>
+        <li>انظر إلى أسئلة الدراسة في نهاية الفصل</li>
+      </ul>
+
+      <h3 class="content-h3">Question – كيف تطرح أسئلة فعالة:</h3>
+      <ul class="content-ul">
+        <li>حوّل العناوين إلى أسئلة</li>
+        <li>استخدم: Who, What, When, Where, Why, How</li>
+        <li>استخدم أهداف التعلم (Learning Objectives)</li>
+        <li>توقع (Anticipate) – توقع</li>
+        <li>اكتب الأسئلة</li>
+      </ul>
+
+      <h2 class="content-h">🔷 الاستبيان (Questionnaire)</h2>
+      <p class="content-p">يبحث عن نوعين من المعلومات:</p>
+      <ul class="content-ul">
+        <li><strong>Factual</strong> – حقائق (مثل: كم مرة تشتري المنتج؟)</li>
+        <li><strong>Opinion</strong> – آراء (مثل: ما رأيك في المنتج؟)</li>
+      </ul>
+
+      <h2 class="content-h">🔷 البحث على الإنترنت</h2>
+      <p class="content-p">قبل البدء بالبحث:</p>
+      <ul class="content-ul">
+        <li>اكتب الأسئلة التي تأمل الإجابة عليها</li>
+        <li>فكر فيمن قد يعرف الإجابات (الإيميل المباشر هو أكثر الطرق فاعلية)</li>
+        <li>طوّر قائمة من المواضيع الفرعية والمرادفات لاستخدامها كمصطلحات بحث</li>
+      </ul>
+
+      <h2 class="content-h">🔷 تقييم النتائج (Evaluating Your Findings)</h2>
+      <p class="content-p">جانبان للتقييم:</p>
+      <ul class="content-ul">
+        <li><strong>موثوقية النتائج؟</strong> (How reliable?)</li>
+        <li><strong>أهمية النتائج؟</strong> (How significant?)</li>
+      </ul>
+
+      <h3 class="content-h3">عوامل موثوقية المعلومات (4 عوامل):</h3>
+      <ul class="content-ul">
+        <li><strong>Accuracy</strong> – الدقة (هل الحسابات صحيحة؟ احذر من التصريحات بدون أدلة)</li>
+        <li><strong>Objectivity</strong> – الموضوعية</li>
+        <li><strong>Completeness</strong> – الاكتمال (كل المعلومات ذات الصلة)</li>
+        <li><strong>Strength</strong> – القوة</li>
+      </ul>
+
+      <h3 class="content-h3">متى تكون الأدلة قوية؟</h3>
+      <ul class="content-ul">
+        <li>يمكن التحقق منها أو إعادتها (كتجربة علمية)</li>
+        <li>توصل مراقبون مستقلون إلى نفس الاستنتاج</li>
+        <li>هناك عدد كبير من الملاحظات المتسقة</li>
+        <li>تتفق مع المعرفة العامة في المجال</li>
+      </ul>
+
+      <h2 class="content-h">🔷 تحديد الأولويات (Prioritizing Your Findings)</h2>
+      <div class="warning-box">
+        <strong>⚠️ خطأ شائع:</strong> كثير من كتّاب التقارير يدرجون كل معلومة جمعوها دون تفكير في أهميتها النسبية. هذا خطأ لأنه يُوحي بأن كل معلومة لها نفس الوزن!
+      </div>
+      <p class="content-p">يجب إبراز أهم النتائج وتوضيح لماذا هي مهمة. قد تحتاج إلى تعديل (amend – تعديل) الهيكل العظمي.</p>
+
+      <h2 class="content-h">🔷 التحقق من النتائج (Checking Your Findings)</h2>
+      <p class="content-p">قبل إنهاء التحقيق تأكد من:</p>
+      <ul class="content-ul">
+        <li>جمعت ومعالجة كل المعلومات اللازمة لكتابة التقرير</li>
+        <li>راضٍ عن دقة وموثوقية هذه المعلومات</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 4 ============== -->
+<div class="section-page" id="page-lec4">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">4</div>
+      <div>
+        <div class="lecture-title">الكتابة والمراجعة والتدقيق</div>
+        <div class="lecture-subtitle">Writing, Revising & Proofreading</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 ترتيب الكتابة والمراجعة</h2>
+      <ol class="steps-list">
+        <li><strong>Pre-write</strong> – ما قبل الكتابة</li>
+        <li><strong>Draft</strong> the main body and appendixes – صياغة الجسم الرئيسي والملاحق</li>
+        <li><strong>Review</strong> the main body and appendixes – مراجعة الجسم الرئيسي والملاحق</li>
+        <li><strong>Draft</strong> the conclusions, recommendations, introduction and summary – صياغة الاستنتاجات والتوصيات والمقدمة والملخص</li>
+        <li><strong>Check and amend</strong> the report – التحقق وتعديل التقرير</li>
+        <li><strong>Issue</strong> the report – إصدار التقرير</li>
+      </ol>
+
+      <h2 class="content-h">🔷 ما قبل الكتابة (Pre-writing)</h2>
+      <ul class="content-ul">
+        <li><strong>Targeting</strong> – تذكر قراءك</li>
+        <li><strong>Outlining</strong> – تذكر هدفك وغرضك. المخطط يجب أن يكون بالاتساع الكافي لتغطية الأهداف</li>
+        <li><strong>Structuring</strong> – راجع هيكلك العظمي. هل لا يزال مناسباً؟</li>
+      </ul>
+
+      <h2 class="content-h">🔷 صياغة الجسم الرئيسي والملاحق</h2>
+      <div class="highlight-box">
+        <strong>💡 نصيحة ذهبية:</strong> "The better your first draft, the better your final draft will be" – كلما كانت مسودتك الأولى أفضل، كلما كانت مسودتك النهائية أفضل. اكتب كما لو كانت هذه مسودتك النهائية.
+      </div>
+      <ul class="content-ul">
+        <li>هذه المكونات تُكتب أولاً</li>
+        <li>ابدأ بالقسم الذي تشعر بأكبر ثقة فيه</li>
+        <li>في مؤخرة عقلك، ستدرك أن هذه المسودة قد تُعدَّل</li>
+      </ul>
+
+      <h2 class="content-h">🔷 مراجعة الجسم الرئيسي والملاحق</h2>
+      <p class="content-p">قيّم ما كتبته فعلاً وكيف يبدو، لا ما كنت تنوي كتابته. ضع نفسك في مكان قرائك وكن <strong>شديد الانتقاد الذاتي</strong>.</p>
+      <p class="content-p">عند القراءة وإعادة القراءة:</p>
+      <ul class="content-ul">
+        <li>قيّم ما إذا كانت البنية الفرعية (منطقية، قطاعية، إبداعية) هي الأنسب</li>
+        <li>افحص التخطيط والمظهر العام</li>
+        <li>تحقق من صحة النبرة والتوازن</li>
+        <li>راجع استخدام وتنسيق الجداول والملاحق</li>
+        <li>تحقق من دقة الأرقام والحسابات</li>
+        <li>تحقق من استخدام اللغة الإنجليزية وعلامات الترقيم والهجاء</li>
+      </ul>
+
+      <h2 class="content-h">🔷 صياغة الاستنتاجات والتوصيات والمقدمة والملخص</h2>
+      <div class="warning-box">
+        <strong>⚠️ ملاحظة مهمة:</strong> هذه الأقسام لا تُكتب إلا <strong>بعد</strong> الانتهاء من الجسم الرئيسي والملاحق ومراجعتها. كل قسم منها يرتبط مباشرة بما كُتب فعلاً في الجسم الرئيسي.
+        <br>• الاستنتاجات يجب أن تنبثق منطقياً من النتائج التفصيلية
+        <br>• التوصيات يجب أن تنبثق منطقياً من الاستنتاجات
+        <br>• المقدمة يجب أن تشمل كل ما يحتاج القراء معرفته قبل قراءة بقية التقرير
+      </div>
+
+      <h2 class="content-h">🔷 التحقق وتعديل التقرير (Checking and Amending)</h2>
+      <p class="content-p">عادةً ثلاثة أشخاص يشاركون في التحقق من المسودة الأولى:</p>
+      <ul class="content-ul">
+        <li><strong>Yourself</strong> – أنت (تحقق من: تباين حجم أو نمط الخطوط، العناوين والعناوين الفرعية، الترقيم، تقنيات التمييز، الهوامش والتباعد)</li>
+        <li><strong>A colleague</strong> – زميل (هل هناك أخطاء أو غموض؟ ما التغييرات المقترحة؟ ما التأثير على القراء؟)</li>
+        <li><strong>Your line manager</strong> – مديرك المباشر (المحتوى التقني والصلة العامة)</li>
+      </ul>
+
+      <h2 class="content-h">🔷 خطوات تقييم المدير (Manager's Appraisal Steps)</h2>
+      <ol class="steps-list">
+        <li><strong>Assimilate</strong> (استيعاب) – ماذا يحاول التقرير تحقيقه؟ كيف؟</li>
+        <li><strong>Question</strong> – هل الحقائق والحجج والاستنتاجات والتوصيات دقيقة ومكتملة ومقنعة؟ (مقنع)</li>
+        <li><strong>Evaluate</strong> – ما مدى أهمية النتائج؟</li>
+        <li><strong>Check</strong> – هل يحتاج الكاتب لتقديم أدلة إضافية؟</li>
+        <li><strong>Amend</strong> – هل يحتاج التقرير إعادة هيكلة؟</li>
+        <li><strong>Edit</strong> – ما التغييرات المطلوبة في المحتوى أو العرض؟</li>
+        <li><strong>Finalize</strong> – هل التقرير مكتوب بالمستوى المطلوب؟ (المستفيدون)</li>
+      </ol>
+
+      <h2 class="content-h">🔷 التدقيق اللغوي (Proofreading)</h2>
+      <p class="content-p">Proofreading هو عملية التحقق من أنك كتبت ما قصدت كتابته. هو أيضاً عملية تصحيح وإقرار الأخطاء في الكتابة (أخطاء نحوية، إملائية، ترقيم، ترتيب تقني).</p>
+
+      <h3 class="content-h3">تقنيات التدقيق الفعّال:</h3>
+      <ul class="content-ul">
+        <li>دع شخصاً آخر يقرأه (Let someone else read it)</li>
+        <li>اقرأ بشكل عكسي (Read backwards)</li>
+        <li>استخدم نهج الحضانة (Use the gestation approach)</li>
+        <li>اقرأ سطراً واحداً في كل مرة</li>
+        <li>اقرأ الكلمات الطويلة مقطعاً مقطعاً</li>
+        <li>استخدم أدوات التكنولوجيا المناسبة</li>
+        <li>تحقق من الأرقام والمعادلات والاختصارات</li>
+        <li>اقرأه بصوت عالٍ</li>
+        <li>استخدم القاموس</li>
+      </ul>
+
+      <h3 class="content-h3">أنواع الأخطاء في التدقيق:</h3>
+      <div class="table-style" style="overflow-x:auto">
+        <table class="table-style">
+          <tr><th>النوع</th><th>أمثلة</th></tr>
+          <tr><td><strong>Substantive error</strong> (أخطاء موضوعية)</td><td>حسابات، بيانات، منحنيات، أوقات، أماكن، المسميات الوظيفية</td></tr>
+          <tr><td><strong>Sequencing error</strong> (أخطاء التسلسل)</td><td>ترقيم الصفحات، المراجع، القوائم، الجداول، الأشكال، الخطوات</td></tr>
+          <tr><td><strong>Misspelling errors / Homophones</strong> (أخطاء إملائية / المتجانسات)</td><td>Its / it's — Their / there — Foreword / forward — Weather / whether</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 5 ============== -->
+<div class="section-page" id="page-lec5">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">5</div>
+      <div>
+        <div class="lecture-title">التنسيق – Style Guide</div>
+        <div class="lecture-subtitle">Formatting Text & Pages – Technical Writing Style</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 ما هو دليل أسلوب الكتابة التقنية؟</h2>
+      <p class="content-p">هو مجموعة من القواعد والاتفاقيات والإرشادات التي تغطي معظم جوانب العمل المكتوب، وتشمل: <strong>تنسيق النص</strong> و<strong>تنسيق الصفحات</strong>.</p>
+
+      <h2 class="content-h">🔷 تنسيق النص (Formatting Text)</h2>
+
+      <h3 class="content-h3">اختيار الخط (Font Selection):</h3>
+      <ul class="content-ul">
+        <li>نوع الخط (Font type)</li>
+        <li>حجم الخط (Font size)</li>
+        <li>أزرار Shrink وGrow لتصغير/تكبير الخط سريعاً</li>
+        <li>تثبيت خطوط مخصصة: تنزيل الخط (TTF أو OTF) ثم النقر بزر اليمين والتثبيت في Windows</li>
+      </ul>
+
+      <h3 class="content-h3">تزيين النص (Text Decoration):</h3>
+      <div class="table-style" style="overflow-x:auto">
+        <table class="table-style">
+          <tr><th>التأثير</th><th>الوصف</th></tr>
+          <tr><td><strong>Bold</strong></td><td>نص عريض للتمييز</td></tr>
+          <tr><td><strong>Italic</strong></td><td>نص مائل</td></tr>
+          <tr><td><u>Underline</u></td><td>نص مسطّر</td></tr>
+          <tr><td><s>Strikethrough</s></td><td>خط مشطوب – يُشير إلى نص محذوف لم يعد مطلوباً</td></tr>
+        </table>
+      </div>
+
+      <h3 class="content-h3">محاذاة النص (Text Alignments):</h3>
+      <ul class="content-ul">
+        <li>Left justification – محاذاة يسار</li>
+        <li>Right justification – محاذاة يمين</li>
+        <li>Center justification – توسيط</li>
+        <li>Full justification – ضبط كامل (الأكثر استخداماً في التقارير التقنية)</li>
+      </ul>
+
+      <h3 class="content-h3">المسافة البادئة (Indentation):</h3>
+      <ul class="content-ul">
+        <li>Left Indentation – مسافة بادئة يسرى</li>
+        <li>Right Indentation – مسافة بادئة يمنى</li>
+      </ul>
+
+      <h3 class="content-h3">تقنيات التمييز In-Text Emphasis:</h3>
+      <p class="content-p">أكثر تقنيات التمييز فاعلية:</p>
+      <ul class="content-ul">
+        <li>Underlining – التسطير</li>
+        <li>Boldface – الخط العريض</li>
+        <li>Italic – المائل</li>
+        <li>Change size – تغيير الحجم</li>
+        <li>Change color – تغيير اللون</li>
+      </ul>
+
+      <h2 class="content-h">🔷 تنسيق الصفحات (Formatting Pages)</h2>
+
+      <h3 class="content-h3">حجم الورق:</h3>
+      <ul class="content-ul">
+        <li>استخدم <strong>A4</strong> لجميع المستندات النصية</li>
+        <li>وزن الورق يُقاس بـ <strong>GSM</strong> (جرام لكل متر مربع)</li>
+        <li>الطباعة على كلا الوجهين</li>
+      </ul>
+
+      <h3 class="content-h3">الهوامش:</h3>
+      <div class="highlight-box">
+        <strong>📏 معيار الهوامش:</strong> <strong>2.54 سم</strong> من كل جانب (يمين – يسار – أعلى – أسفل)
+      </div>
+
+      <h3 class="content-h3">الأعمدة (Columns):</h3>
+      <ul class="content-ul">
+        <li>استخدم <strong>عمودين</strong> في الأوراق التقنية (Technical papers)</li>
+      </ul>
+
+      <h3 class="content-h3">الرأس والتذييل (Header and Footer):</h3>
+      <p class="content-p">يُضاف للصفحات لتحديد التقرير وترقيم صفحاته.</p>
+
+      <h3 class="content-h3">تغيير اتجاه الصفحة:</h3>
+      <ul class="content-ul">
+        <li>Portrait – عمودي (الافتراضي)</li>
+        <li>Landscape – أفقي (للجداول العريضة والمخططات)</li>
+      </ul>
+
+      <h2 class="content-h">🔷 الفراغات البيضاء (White Spaces)</h2>
+      <ul class="content-ul">
+        <li><strong>الهوامش:</strong> 2.54 سم من كل جانب</li>
+        <li><strong>الأعمدة:</strong> عمودان في الأوراق التقنية</li>
+        <li>الفراغات البيضاء تحسن من قابلية القراءة</li>
+      </ul>
+
+      <h2 class="content-h">🔷 التدقيق الإملائي (Spell Check)</h2>
+      <ul class="content-ul">
+        <li>من تبويب Review</li>
+        <li>أو بالنقر بزر اليمين</li>
+      </ul>
+
+      <h2 class="content-h">🔷 تنسيق السطور وتشكيل النص</h2>
+      <ul class="content-ul">
+        <li>Line Spacing – تباعد الأسطر</li>
+        <li>Borders and Shades – الحدود والتظليل</li>
+        <li>Subscript – منخفض (مثل H₂O)</li>
+        <li>Superscript – مرتفع (مثل m²)</li>
+        <li>Bullets – النقاط الدائرية</li>
+        <li>Special Symbols – الرموز الخاصة</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 6 ============== -->
+<div class="section-page" id="page-lec6">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">6</div>
+      <div>
+        <div class="lecture-title">مهارات العرض وتقديم البيانات</div>
+        <div class="lecture-subtitle">Presentation Skills & Data Presentation Methods</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 مهارات العرض (Presentation Skills)</h2>
+      <p class="content-p">مهارات العرض هي <strong>طريقة بصرية للتواصل</strong> ونقل المعرفة والفهم لموضوع ما إلى الجمهور.</p>
+
+      <h3 class="content-h3">أهمية مهارات العرض:</h3>
+      <ul class="content-ul">
+        <li>النجاح الفردي (Individual success)</li>
+        <li>الصورة العامة والرأي العام (Public image)</li>
+        <li>إدارة الوقت (Time management)</li>
+        <li>تقليل التوتر (Stress reduction)</li>
+        <li>القيادة (Leadership)</li>
+        <li>نجاح الأعمال (Business success)</li>
+      </ul>
+
+      <h2 class="content-h">🔷 خطوات العرض الفعّال</h2>
+      <ol class="steps-list">
+        <li><strong>Set a goal</strong> – حدد هدفك: لماذا؟</li>
+        <li><strong>Determine the purpose</strong> – حدد الغرض: ماذا؟ كيف؟</li>
+        <li><strong>Analyzing the audience</strong> – حلّل الجمهور (مستوى المعرفة، الأسئلة المتوقعة، التوجهات، الخبرة)</li>
+        <li><strong>Gathering information</strong> – جمع المعلومات (الموضوعات الرئيسية)</li>
+        <li><strong>Write an outline</strong> – اكتب مخططاً (البنية الرئيسية)</li>
+        <li><strong>Open strong</strong> – ابدأ بقوة (الافتتاحية القوية)</li>
+      </ol>
+
+      <h2 class="content-h">🔷 خطوات الكتابة الناجحة (5 خطوات)</h2>
+      <ol class="steps-list">
+        <li><strong>Planning</strong> – التخطيط (قد يستغرق أكثر من ثلث الوقت الإجمالي)</li>
+        <li><strong>Drafting</strong> – الصياغة</li>
+        <li><strong>Revising</strong> – المراجعة</li>
+        <li><strong>Editing</strong> – التحرير</li>
+        <li><strong>Proofreading</strong> – التدقيق</li>
+      </ol>
+
+      <h3 class="content-h3">التخطيط يشمل:</h3>
+      <ul class="content-ul">
+        <li>Analyzing Your Audience – تحليل الجمهور</li>
+        <li>Analyzing Your Purpose – تحليل الغرض</li>
+        <li>Choosing Your Writing Tools – اختيار أدوات الكتابة</li>
+        <li>Generating Ideas About Your Subject – توليد أفكار</li>
+        <li>Researching Additional Information – البحث</li>
+        <li>Organizing and Outlining Your Document – التنظيم والتخطيط</li>
+        <li>Devising a Schedule and a Budget – وضع جدول زمني وميزانية</li>
+      </ul>
+
+      <h2 class="content-h">🔷 التمثيل البياني (Graphical Representation)</h2>
+      <p class="content-p">هو عرض بصري للبيانات والنتائج الإحصائية. تُستخدم المخططات والرسوم البيانية لتصوير: الاتجاهات (Trends)، العلاقات (Relationships)، المقارنات (Comparisons).</p>
+
+      <h3 class="content-h3">لماذا نستخدم الرسوم؟</h3>
+      <ul class="content-ul">
+        <li>الأكثر إفادةً هي البسيطة وتفسر نفسها بنفسها</li>
+        <li>تبسّط الأفكار</li>
+        <li>تخلق الاهتمام</li>
+        <li>تعزز الأفكار</li>
+        <li>الرسوم عالمية (لا حاجة لترجمة)</li>
+      </ul>
+
+      <h3 class="content-h3">الإرشادات العامة للرسوم:</h3>
+      <ul class="content-ul">
+        <li>حدد الغرض من الرسم</li>
+        <li>قيّم دقة وصلاحية البيانات</li>
+        <li>تجنب الفوضى (Clutter – الفوضى)</li>
+        <li>أضف عنواناً وملاحظات ومصدر البيانات</li>
+        <li>أشر إلى جميع الرسوم في النص</li>
+        <li>فكر في مكان وضع الرسوم</li>
+      </ul>
+
+      <h2 class="content-h">🔷 أنواع التمثيل البياني</h2>
+
+      <h3 class="content-h3">1. Pie Chart (الدائرة)</h3>
+      <p class="content-p">يُظهر النسب المئوية أو الحصص النسبية. المجموع = 100%</p>
+      <ul class="content-ul">
+        <li><strong>مزايا:</strong> يلخص مجموعة بيانات كبيرة، أبسط من الأنواع الأخرى، يُظهر نسبة كل فئة من الإجمالي</li>
+        <li><strong>عيوب:</strong> لا تستخدم أكثر من 10 أقسام، لا يقدم بيانات عددية دقيقة، صعب مقارنة مجموعتي بيانات</li>
+      </ul>
+
+      <h3 class="content-h3">2. Bar Chart (الأعمدة)</h3>
+      <p class="content-p">لمقارنة الفئات. أعمدة مستطيلة بعرض متساوٍ وطول يناسب القيم. يمكن أن تكون رأسية أو أفقية.</p>
+      <ul class="content-ul">
+        <li>استخدم عدداً محدوداً من الأعمدة</li>
+        <li>أظهر المقارنة بعناية</li>
+        <li>كن مبدعاً: الألوان والتصميم</li>
+        <li>حافظ على تساوي عرض الأعمدة</li>
+      </ul>
+
+      <h3 class="content-h3">3. Line Graph (الخط البياني)</h3>
+      <p class="content-p">يعرض الاتجاهات عبر الزمن. يستخدم مقاطع خطية لربط نقاط البيانات.</p>
+      <ul class="content-ul">
+        <li>استخدمه للاتجاهات (Trends)</li>
+        <li>ضعه بعناية في التقرير</li>
+        <li>استخدم خطوطاً متعددة بحذر</li>
+        <li>اسعَ للدقة والوضوح</li>
+      </ul>
+
+      <h3 class="content-h3">4. Gantt Chart (مخطط جانت)</h3>
+      <p class="content-p">نوع فرعي من مخطط الأعمدة يُظهر فئات مختلفة عبر فترة زمنية. يُستخدم لتصور بداية ونهاية المشروع. يُستخدم كثيراً في إدارة المشاريع للحفاظ على المواعيد النهائية. الأفضل لـ: تخطيط المشاريع، إدارة الاعتماديات، جدولة المهام.</p>
+
+      <h3 class="content-h3">5. Flow Chart (مخطط التدفق)</h3>
+      <p class="content-p">تمثيل رسومي لخوارزمية أو نهج خطوة بخطوة لحل مهمة. الرموز الرئيسية:</p>
+      <ul class="content-ul">
+        <li><strong>المستطيل</strong> – خطوة عملية (نشاط)</li>
+        <li><strong>المعين</strong> – قرار (Decision)</li>
+        <li>يُخبر قصة عن عملية بتسلسل معين</li>
+        <li>الإرشادات: قلّل عدد الأشكال، قدّم مفتاح الأسطورة عند الضرورة، الاتجاه من الأعلى للأسفل أو من اليسار لليمين</li>
+      </ul>
+
+      <h3 class="content-h3">6. Organizational Chart (المخطط التنظيمي)</h3>
+      <p class="content-p">أداة إدارية تُمثل بصرياً هيكل المنظمة. يُظهر الأدوار والمواقع وعلاقات التقارير، مما يساعد على فهم سلطة المنظمة ومسؤوليتها وتدفق الاتصالات.</p>
+
+      <h2 class="content-h">🔷 إرشادات تلخيص البيانات</h2>
+      <ul class="content-ul">
+        <li>تأكد من وجود عنوان للرسم</li>
+        <li>اعنوِن مكونات رسمك</li>
+        <li>اذكر مصدر البيانات مع التاريخ</li>
+        <li>أضف عدد الملاحظات (n=xx) كنقطة مرجعية</li>
+        <li>أضف حاشية إذا كانت هناك معلومات إضافية مطلوبة</li>
+      </ul>
+
+      <h2 class="content-h">🔷 الجداول (Tables)</h2>
+      <p class="content-p">أبسط طريقة لتلخيص البيانات. تُقدم البيانات كأرقام مطلقة أو نسب مئوية. أنواعها:</p>
+      <ul class="content-ul">
+        <li><strong>Frequency distribution</strong> – توزيع التكرار: مجموعة من الفئات مع الأعداد العددية، تمثل بيانات عددية، لها عنوان، مصدر البيانات</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 7 ============== -->
+<div class="section-page" id="page-lec7">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">7</div>
+      <div>
+        <div class="lecture-title">مقدمة في LaTeX</div>
+        <div class="lecture-subtitle">An Introduction to LaTeX – Writing with LaTeX</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 ما هو LaTeX؟</h2>
+      <p class="content-p">LaTeX (نطقها: <strong>«Lah-tech»</strong>) هو نظام تحضير المستندات للطباعة عالية الجودة. يُستخدم غالباً للوثائق التقنية أو العلمية المتوسطة إلى الكبيرة، لكن يمكن استخدامه لأي شكل من أشكال النشر.</p>
+
+      <div class="warning-box">
+        <strong>⚠️ ملاحظة مهمة:</strong> LaTeX ليس معالج نصوص (word processor)! بدلاً من ذلك، يُشجع المؤلفين على عدم القلق كثيراً بشأن مظهر مستنداتهم والتركيز على المحتوى الصحيح.
+      </div>
+
+      <h2 class="content-h">🔷 كيف يعمل LaTeX؟</h2>
+      <p class="content-p">ملف LaTeX يُعالَج بواسطة برنامج يسمى <strong>TeX engine</strong> الذي يستخدم الأوامر المضمنة في ملف النص لتوجيه عملية الطباعة، ويحوّل أوامر LaTeX ونص المستند إلى <strong>ملف PDF</strong> مطبوع احترافياً.</p>
+
+      <h2 class="content-h">🔷 مزايا LaTeX (Advantages)</h2>
+      <ul class="content-ul">
+        <li><strong>Quality Typesetting</strong> – طباعة عالية الجودة خاصةً للمستندات العلمية والتقنية</li>
+        <li><strong>Cross-Referencing</strong> – يبسّط الإشارة المتقاطعة للمعادلات والأشكال والجداول والأقسام</li>
+        <li><strong>Version Control</strong> – يسهّل التحكم في الإصدار والتعاون من خلال الملفات النصية</li>
+        <li><strong>Customization</strong> – يسمح بتخصيص واسع لأنماط المستندات والتخطيطات والتنسيقات</li>
+      </ul>
+
+      <h2 class="content-h">🔷 عيوب LaTeX (Disadvantages)</h2>
+      <ul class="content-ul">
+        <li><strong>Learning Curve</strong> – يتطلب تعلم بنيته وأوامره مما قد يكون مُرهقاً للمبتدئين</li>
+        <li><strong>Limited WYSIWYG</strong> – (نطقها: wiz-ee-wig) غياب التغذية البصرية الفورية (WYSIWYG = "What You See Is What You Get" – ما تراه هو ما تحصل عليه)</li>
+        <li><strong>Steep (code-based)</strong> – قائم على الكود</li>
+      </ul>
+
+      <h2 class="content-h">🔷 استخدامات LaTeX</h2>
+      <ul class="content-ul">
+        <li><strong>Academic Writing</strong> – الكتابة الأكاديمية: الأوراق الأكاديمية، الرسائل العلمية، الأطروحات (أطروحات)</li>
+        <li><strong>Scientific</strong> – التقارير العلمية والمقالات والمجلات</li>
+        <li><strong>Technical Documents</strong> – التوثيق التقني والأدلة</li>
+        <li><strong>Presentations</strong> – العروض باستخدام أدوات مثل Beamer</li>
+      </ul>
+
+      <h2 class="content-h">🔷 الحصول على LaTeX</h2>
+      <p class="content-p">LaTeX برنامج مجاني (free software):</p>
+      <ul class="content-ul">
+        <li><strong>Windows:</strong> MiKTeX أو TeX Live مع محرر TeXstudio</li>
+        <li><strong>Online:</strong> Overleaf أو Papeeria أو CoCalc</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Overleaf:</strong> محرر LaTeX تعاوني عبر الإنترنت يوفر: تتبع التغييرات في الوقت الحقيقي، متعاونون غير محدودين، تاريخ كامل للمستند. يمكن ربطه بمديري المراجع.
+      </div>
+
+      <h2 class="content-h">🔷 بنية LaTeX الأساسية</h2>
+      <div class="highlight-box" style="font-family:monospace; direction:ltr; text-align:left;">
+        \documentclass{article}<br>
+        \title{Your Title}<br>
+        \author{Your Name}<br>
+        \date{Month Year}<br>
+        \begin{document}<br>
+        \section{Introduction}<br>
+        This is a simple LaTeX document.<br>
+        \subsection{Subsection}<br>
+        Some text in a subsection.<br>
+        \end{document}
+      </div>
+
+      <h2 class="content-h">🔷 أوامر LaTeX الأساسية</h2>
+      <div class="table-style" style="overflow-x:auto">
+        <table class="table-style">
+          <tr><th>الأمر</th><th>الوظيفة</th></tr>
+          <tr><td style="direction:ltr">\textbf{...}</td><td>خط عريض (Bold)</td></tr>
+          <tr><td style="direction:ltr">\textit{...}</td><td>خط مائل (Italic)</td></tr>
+          <tr><td style="direction:ltr">\underline{...}</td><td>تسطير (Underline)</td></tr>
+          <tr><td style="direction:ltr">% text</td><td>تعليق (Comment) – لا يُطبع</td></tr>
+          <tr><td style="direction:ltr">\includegraphics{name}</td><td>إدراج صورة</td></tr>
+          <tr><td style="direction:ltr">\caption{...}</td><td>إضافة تسمية توضيحية</td></tr>
+          <tr><td style="direction:ltr">\label{...}</td><td>إنشاء تسمية للإشارة إليها</td></tr>
+          <tr><td style="direction:ltr">\begin{itemize}</td><td>قائمة غير مرتبة (Unordered)</td></tr>
+          <tr><td style="direction:ltr">\begin{enumerate}</td><td>قائمة مرتبة (Ordered)</td></tr>
+          <tr><td style="direction:ltr">$E=mc^2$</td><td>معادلة رياضية داخل السطر (Inline math)</td></tr>
+          <tr><td style="direction:ltr">\begin{abstract}</td><td>الملخص</td></tr>
+          <tr><td style="direction:ltr">\chapter | \section | \subsection</td><td>تقسيمات المستند</td></tr>
+        </table>
+      </div>
+
+      <h3 class="content-h3">إعداد الصورة في LaTeX:</h3>
+      <ul class="content-ul">
+        <li>استخدام حزمة graphicx</li>
+        <li>تحديد عرض الصورة (مثلاً: 75% من عرض النص)</li>
+        <li>إضافة تسمية توضيحية فوق أو تحت الصورة</li>
+        <li>إنشاء تسمية (label) للإشارة إلى الصورة داخل المستند</li>
+      </ul>
+
+      <h3 class="content-h3">إنشاء جداول في LaTeX:</h3>
+      <div class="highlight-box" style="font-family:monospace; direction:ltr; text-align:left;">
+        \begin{tabular}{c c c}<br>
+        cell1 &amp; cell2 &amp; cell3 \\<br>
+        cell4 &amp; cell5 &amp; cell6 \\<br>
+        \end{tabular}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== LECTURE 8 ============== -->
+<div class="section-page" id="page-lec8">
+  <div class="lecture-card">
+    <div class="lecture-header" onclick="toggleBody(this)">
+      <div class="lecture-num">8</div>
+      <div>
+        <div class="lecture-title">أنواع التقارير الشائعة</div>
+        <div class="lecture-subtitle">CV – Minutes of Meeting – Agenda – Technical Reports</div>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="lecture-body open">
+
+      <h2 class="content-h">🔷 أنواع التقارير الشائعة</h2>
+      <ul class="content-ul">
+        <li>CV Writing – كتابة السيرة الذاتية</li>
+        <li>Minutes Of Meeting – محضر الاجتماع</li>
+        <li>Agenda Writing – كتابة جدول أعمال</li>
+        <li>Student project report – تقرير مشروع الطالب</li>
+        <li>Research report – تقرير بحثي</li>
+        <li>Feasibility report – تقرير الجدوى</li>
+        <li>Interview reports – تقارير المقابلات</li>
+        <li>Technical reports – التقارير التقنية</li>
+      </ul>
+
+      <hr class="divider">
+      <h2 class="content-h">📄 CV Writing (السيرة الذاتية)</h2>
+      <p class="content-p">السيرة الذاتية (Curriculum Vitae) هي نظرة عامة مكتوبة عن خبرة الشخص ومؤهلاته التي يبحث عنها صاحب العمل المحتمل.</p>
+      <h3 class="content-h3">مكونات السيرة الذاتية:</h3>
+      <ul class="content-ul">
+        <li><strong>Name</strong> – الاسم الكامل <u>بدون</u> ألقاب عامة مثل Mr. أو Ms.</li>
+        <li><strong>Address</strong> – العنوان الدائم</li>
+        <li><strong>Summary</strong> – وصف موجز لما حققته في مهنتك</li>
+        <li><strong>Academic Qualification</strong> – المؤهلات الأكاديمية من الأحدث (newer)</li>
+        <li><strong>Additional Knowledge</strong> – مهارات اكتسبتها خارج مهنتك</li>
+        <li><strong>Acquired Skills</strong> – المهارات الناعمة (Soft Skills)</li>
+        <li><strong>Programming Languages</strong> – إن وُجدت</li>
+        <li><strong>Software Tools</strong> – أدوات برمجية (MS Word, Excel)</li>
+        <li><strong>Operating System Platforms</strong> – Windows, Mac</li>
+        <li><strong>Database Management System</strong> – إن وُجد</li>
+        <li><strong>Personal Skills</strong> – المهارات الشخصية</li>
+        <li><strong>Experience Breakdown</strong> – شرح تفصيلي للخبرة</li>
+        <li><strong>Achievements & Interests</strong> – الإنجازات والهوايات</li>
+        <li><strong>References</strong> – المراجع</li>
+        <li><strong>Declaration</strong> – إقرار بأن جميع المعلومات صحيحة</li>
+      </ul>
+
+      <hr class="divider">
+      <h2 class="content-h">📋 Minutes of Meeting (محضر الاجتماع)</h2>
+      <p class="content-p">هو السجل المكتوب المباشر للاجتماع. يتضمن قائمة الحاضرين والقضايا المطروحة والردود ذات الصلة والقرارات النهائية. الغرض منه تسجيل ما تم تكليف كل شخص به مع الإنجازات والمواعيد النهائية.</p>
+      <h3 class="content-h3">مكونات محضر الاجتماع:</h3>
+      <ul class="content-ul">
+        <li><strong>Name of the company</strong> – أعلى اليسار</li>
+        <li><strong>Date</strong> – أعلى اليمين</li>
+        <li><strong>Topic</strong> – بعد مسافتين؛ محاذاة وسط</li>
+        <li><strong>Attendees</strong> – الاسم والمسمى الوظيفي (عمودان)</li>
+        <li><strong>Absentees</strong> – الاسم، الأدوار، أسباب الغياب (3 أعمدة)</li>
+        <li><strong>Agenda at hand</strong> – الموضوع المراد مناقشته</li>
+        <li><strong>Issues raised</strong> – مع أسماء المتحدثين</li>
+        <li><strong>Suggestions</strong> – مع أسماء المتحدثين</li>
+        <li><strong>Decision</strong> – نتيجة الاجتماع</li>
+        <li><strong>Future Meetings</strong> – تاريخ وموضوع الاجتماع القادم</li>
+      </ul>
+
+      <hr class="divider">
+      <h2 class="content-h">📅 Agenda Writing (جدول الأعمال)</h2>
+      <p class="content-p">جدول الأعمال (يُسمى أيضاً docket أو schedule) هو قائمة بالأنشطة بالترتيب الذي ستُنفَّذ به من البداية حتى النهاية. يساعد في التحضير للاجتماع من خلال توفير قائمة بالبنود وموضوعات وأهداف وأطر زمنية واضحة.</p>
+      <h3 class="content-h3">مكونات جدول الأعمال:</h3>
+      <ul class="content-ul">
+        <li>Meeting Agenda Title – في الأعلى، محاذاة وسط</li>
+        <li>Meeting Information – وصف الغرض</li>
+        <li>Objective – وصف جدول الأعمال</li>
+        <li>Date, Location, Time</li>
+        <li>Meeting Type – عصف ذهني أو نقاش أو تقييم</li>
+        <li>Time of Arrival & Adjournment</li>
+        <li>Attendees</li>
+        <li>Preparation: Please Read / Please bring</li>
+        <li>Action Items</li>
+      </ul>
+
+      <hr class="divider">
+      <h2 class="content-h">🎓 Student Project Reports (تقارير مشاريع الطلاب)</h2>
+      <h3 class="content-h3">ما يجب مراعاته:</h3>
+      <ul class="content-ul">
+        <li>اختر الموضوع (من الأستاذ أو بنفسك)</li>
+        <li>الموضوع يجب أن يكون مقبولاً للمجموعة الفاحصة</li>
+        <li>حدد مصادر المعلومات</li>
+        <li>حدد كيف ستجمع المعلومات</li>
+        <li>اجمع المعلومات</li>
+        <li>حلّل المعلومات</li>
+        <li>صمّم واكتب التقرير</li>
+      </ul>
+      <h3 class="content-h3">هيكل التقرير:</h3>
+      <ol class="steps-list">
+        <li>Cover page – صفحة الغلاف</li>
+        <li>Contents page – صفحة المحتويات</li>
+        <li>Introduction – المقدمة</li>
+        <li>Main body – الجسم الرئيسي</li>
+        <li>Conclusions – الاستنتاجات</li>
+        <li>Recommendations (optional) – التوصيات (اختياري)</li>
+        <li>Appendices – الملاحق</li>
+        <li>Sources/references – المصادر والمراجع</li>
+      </ol>
+
+      <hr class="divider">
+      <h2 class="content-h">🔬 Research Reports (التقارير البحثية)</h2>
+      <ul class="content-ul">
+        <li>Abstract – الملخص</li>
+        <li>Introduction (Work objectives – Work background)</li>
+        <li>Literature survey – مراجعة الأدبيات</li>
+        <li>Material and methods – المواد والطرق</li>
+        <li>Discussion – النقاش</li>
+        <li>Conclusion / Future work</li>
+        <li>Recommendations</li>
+        <li>References</li>
+        <li>Appendices</li>
+      </ul>
+
+      <hr class="divider">
+      <h2 class="content-h">📊 Feasibility Reports (تقارير الجدوى)</h2>
+      <p class="content-p">تقارير الجدوى تبحث فيما إذا كان يجب تنفيذ مشروع ما.</p>
+      <div class="highlight-box">
+        <strong>نقاط مهمة:</strong>
+        <ul class="content-ul">
+          <li>يجب أن تكون <strong>غير متحيزة (unbiased)</strong> ومنهجك <strong>منطقياً (logical)</strong></li>
+          <li>تأكد من معرفتك الدقيقة بالغرض والنطاق من المشروع</li>
+        </ul>
+      </div>
+      <h3 class="content-h3">الهيكل:</h3>
+      <ul class="content-ul">
+        <li>Abstract, Summary, Contents, Glossary</li>
+        <li>Introduction (purpose and scope)</li>
+        <li>Discussion, Conclusions, Recommendations</li>
+        <li>References (if necessary), Appendixes</li>
+      </ul>
+
+      <hr class="divider">
+      <h2 class="content-h">💼 Interview Reports (تقارير المقابلات)</h2>
+      <p class="content-p">إذا كانت سيرتك الذاتية ناجحة، ستُدعى لمقابلة عمل.</p>
+      <h3 class="content-h3">نوعان من تقارير المقابلات:</h3>
+      <ul class="content-ul">
+        <li><strong>الأول:</strong> لضمان أن المقابلة منظمة وشاملة وأن ملاحظات ذات صلة مُسجَّلة</li>
+        <li><strong>الثاني:</strong> لتقييم المادة المجمعة أثناء المقابلة</li>
+      </ul>
+      <p class="content-p">اللجنة: مدير + تقني + HR</p>
+      <h3 class="content-h3">هيكل تقرير المقابلة المنظمة:</h3>
+      <ol class="steps-list">
+        <li>المقابلة، القائم بالمقابلة، المرجع، التاريخ، الوقت، المكان</li>
+        <li>Physical: الانطباع الأول، المظهر، الكلام، الصحة</li>
+        <li>Attainment (الإجنجاز): العمل، التعليمي، التجريبي</li>
+        <li>Interests – الاهتمامات</li>
+        <li>Circumstances (ظروف): الخلفية العائلية، الوضع الاجتماعي</li>
+        <li>Special abilities – القدرات الخاصة</li>
+        <li>General intelligence – الذكاء العام</li>
+        <li>Personality – الشخصية</li>
+      </ol>
+
+      <hr class="divider">
+      <h2 class="content-h">⚙️ Technical Reports (التقارير التقنية)</h2>
+      <p class="content-p">التقرير التقني هو وثيقة يكتبها الباحث تصف كيفية نقل البحث: مراحله وخطواته ونتائجه، وقد يتضمن تفاصيل أعمق مثل البيانات التجريبية والنتائج. وثيقة منشورة توجه القراء بوضوح عبر مسار عملك.</p>
+
+      <h3 class="content-h3">أهمية التوثيق التقني للأعمال:</h3>
+      <ul class="content-ul">
+        <li><strong>Easy communication</strong> – التواصل الشفاف مع الإدارة العليا وأصحاب المصلحة</li>
+        <li><strong>Demonstrating problem & solution</strong> – إلقاء الضوء على المشكلة وتقديم منتجك كأفضل حل</li>
+        <li><strong>Influence upper management decisions</strong> – التأثير على قرارات الإدارة العليا وفتح قناة التواصل</li>
+      </ul>
+
+      <h3 class="content-h3">عناصر التقرير التقني الجيد:</h3>
+      <ul class="content-ul">
+        <li>Uses – الاستخدامات</li>
+        <li>Functionality – الوظيفية</li>
+        <li>Features – الميزات</li>
+        <li>Development – التطوير</li>
+        <li>Method – الطريقة</li>
+      </ul>
+
+      <h3 class="content-h3">أنواع التقارير التقنية:</h3>
+      <ul class="content-ul">
+        <li><strong>Feasibility report</strong> – يُعدّ في المراحل الأولية لتحديد ما إذا كان المشروع المقترح سينجح</li>
+        <li><strong>Business report</strong> – يُحدد رؤية وأهداف العمل والخطوات اللازمة</li>
+        <li><strong>Technical specification report</strong> – يُحدد المتطلبات الأساسية للمنتج أو المشروع</li>
+      </ul>
+
+      <h3 class="content-h3">العناصر الرئيسية للتقرير التقني:</h3>
+      <div class="table-style" style="overflow-x:auto">
+        <table class="table-style">
+          <tr><th>العنصر</th><th>الوصف</th></tr>
+          <tr><td>Cover Page</td><td>أسماء المؤلفين، اسم الشركة، الشعار</td></tr>
+          <tr><td>Title</td><td>عنوان + معلومات المؤلف + موقعه + تاريخ التقديم + اسم المشرف</td></tr>
+          <tr><td>Abstract</td><td>ملخص موجز للمشروع يساعد القراء على تقرير القراءة</td></tr>
+          <tr><td>Foreword</td><td>الاعتراف بجميع المصادر المستخدمة</td></tr>
+          <tr><td>Acknowledgment</td><td>الاعتراف بالأشخاص والمؤسسات التي ساعدت</td></tr>
+          <tr><td>Table of Contents</td><td>بوصلة لهيكل التقرير – يسهّل التنقل</td></tr>
+          <tr><td>List of illustrations</td><td>جميع الرسوم البيانية والصور والمخططات والجداول</td></tr>
+          <tr><td>Introduction</td><td>سياق المشروع + غرضه + خلفيته + نطاقه + قيوده</td></tr>
+          <tr><td>Body</td><td>أقسام وأقسام فرعية تحدد الغرض والأفكار والنطاق</td></tr>
+          <tr><td>Conclusion</td><td>إجابات على الأسئلة + نتائج الأهداف + أي ملاحظات إضافية</td></tr>
+          <tr><td>Appendices</td><td>الصيغ الرياضية والبيانات بنفس ترتيب ورودها</td></tr>
+          <tr><td>References</td><td>الاستشهاد بمصادر الاقتباسات والإحصاءات</td></tr>
+          <tr><td>Glossary</td><td>فهرس المصطلحات والرموز</td></tr>
+          <tr><td>Bibliography</td><td>أسماء الكتب والبيانات التي تمت دراستها</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== QUIZ ============== -->
+<div class="section-page" id="page-quiz">
+  <div class="quiz-header">
+    <h2>🎯 بنك الأسئلة التفاعلي</h2>
+    <p style="color:var(--text-muted)">جاوب بنفسك ثم اضغط "أظهر الإجابة" للتحقق</p>
+    <div class="quiz-stats">
+      <div class="stat-badge">إجمالي الأسئلة: <span id="totalQ">0</span></div>
+      <div class="stat-badge">ظهرت الإجابة: <span id="revealedQ">0</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+
+  <div class="filter-bar">
+    <strong style="color:var(--text-muted);margin-left:.5rem">فلتر:</strong>
+    <button class="filter-btn active-filter" onclick="filterQuiz('all',this)">الكل</button>
+    <button class="filter-btn" onclick="filterQuiz('lec1',this)">م1</button>
+    <button class="filter-btn" onclick="filterQuiz('lec2',this)">م2</button>
+    <button class="filter-btn" onclick="filterQuiz('lec3',this)">م3</button>
+    <button class="filter-btn" onclick="filterQuiz('lec4',this)">م4</button>
+    <button class="filter-btn" onclick="filterQuiz('lec5',this)">م5</button>
+    <button class="filter-btn" onclick="filterQuiz('lec6',this)">م6</button>
+    <button class="filter-btn" onclick="filterQuiz('lec7',this)">م7</button>
+    <button class="filter-btn" onclick="filterQuiz('lec8',this)">م8</button>
+    <button class="filter-btn" onclick="filterQuiz('mcq',this)">MCQ</button>
+    <button class="filter-btn" onclick="filterQuiz('tf',this)">صح/غلط</button>
+    <button class="filter-btn" onclick="filterQuiz('fill',this)">أكمل</button>
+    <button class="filter-btn" onclick="filterQuiz('theory',this)">نظري</button>
+  </div>
+
+  <div class="quiz-controls">
+    <button class="ctrl-btn primary" onclick="revealAll()">👁 إظهار كل الإجابات</button>
+    <button class="ctrl-btn secondary" onclick="hideAll()">🙈 إخفاء كل الإجابات</button>
+    <button class="ctrl-btn secondary" onclick="resetAll()">🔄 إعادة تعيين</button>
+  </div>
+
+  <div id="questionsContainer"></div>
+</div>
+
+</main>
+
+<script>
+// ============================
+// QUESTIONS DATABASE
+// ============================
+const questions = [
+  // ========= LECTURE 1 =========
+  {id:1, lec:'lec1', type:'mcq', q:'ما التعريف الصحيح للكتابة التقنية (Technical Writing)؟',
+   opts:['A. أسلوب كتابة إبداعي لرواية القصص','B. فن وعلم الكتابة المتخصص في إعطاء تفاصيل دقيقة حول كيفية عمل الأشياء وتوجيه الآخرين','C. طريقة لكتابة الروايات والمقالات الأدبية','D. أسلوب للكتابة الصحفية والإعلامية'],
+   ans:'B', exp:'Technical Writing هو فن وعلم الكتابة المتخصص في توضيح كيفية عمل الأشياء وتحضير الآخرين عبر التوثيق لتنفيذ مهام محددة.'},
+
+  {id:2, lec:'lec1', type:'tf', q:'الكتابة التقنية تشجع المؤلفين على التركيز كثيراً على المظهر البصري لمستنداتهم.',
+   ans:'غلط', exp:'العكس صحيح؛ الكتابة التقنية تشجع على التركيز على المحتوى الصحيح وليس المظهر.'},
+
+  {id:3, lec:'lec1', type:'mcq', q:'أي نوع من أنواع الكتابة يهدف إلى التأثير على القارئ لتبني وجهة نظر الكاتب؟',
+   opts:['A. Narrative Writing','B. Descriptive Writing','C. Persuasive Writing','D. Expository Writing'],
+   ans:'C', exp:'الكتابة الإقناعية (Persuasive Writing) تهدف إلى التأثير على القارئ لتبني وجهة نظر الكاتب.'},
+
+  {id:4, lec:'lec1', type:'fill', q:'اكمل: "To fail to prepare is to prepare to _______"',
+   ans:'fail', exp:'العبارة الكاملة: "To fail to prepare is to prepare to fail" – الفشل في التحضير هو التحضير للفشل.'},
+
+  {id:5, lec:'lec1', type:'mcq', q:'ما هو أول شيء يجب فعله قبل كتابة أي كلمة في التقرير؟',
+   opts:['A. جمع المعلومات مباشرة','B. تحديد الهدف (Set your objective)','C. كتابة الاستنتاجات','D. رسم المخططات البيانية'],
+   ans:'B', exp:'أول خطوة هي Set your objective – تحديد الهدف بدقة.'},
+
+  {id:6, lec:'lec1', type:'mcq', q:'كم عدد الخطوات الرئيسية في مرحلة التحضير والتخطيط؟',
+   opts:['A. 3','B. 4','C. 5','D. 6'],
+   ans:'C', exp:'5 خطوات: Set objective, Assess readership, Decide information needed, Prepare skeletal framework, Test and revise.'},
+
+  {id:7, lec:'lec1', type:'tf', q:'هدف التقرير "to persuade" يعني شرح شيء ما للقارئ بالتفصيل.',
+   ans:'غلط', exp:'"to persuade" يعني إقناع القارئ بوجهة نظر معينة، بينما "to explain" هو الشرح.'},
+
+  {id:8, lec:'lec1', type:'mcq', q:'الهيكل العظمي للتقرير (Skeletal Framework) يشبه:',
+   opts:['A. كتابة التقرير النهائي كاملاً','B. رسم المخططات لبناء منزل جديد','C. مراجعة التقرير بعد كتابته','D. تدقيق الأخطاء الإملائية'],
+   ans:'B', exp:'الهيكل العظمي مثل رسم المخططات – يوضح البنية الكاملة ويذكرك بالمواد المطلوبة.'},
+
+  {id:9, lec:'lec1', type:'theory', q:'اشرح لماذا يعتبر التقرير التقني مهماً بذكر 4 أسباب على الأقل.',
+   ans:'أسباب أهمية التقرير التقني:\n1. Enhance Communication Skills – تطوير مهارات التواصل\n2. Propagate the knowledge – نشر المعرفة\n3. Building on existing knowledge – البناء على المعرفة الموجودة\n4. Making intelligent decisions – اتخاذ قرارات ذكية مبنية على بيانات\n5. Team members/co-workers – التواصل مع أعضاء الفريق\n6. Good project work could be rejected by a poor report – مشروع ممتاز قد يُرفض بسبب تقرير رديء'},
+
+  {id:10, lec:'lec1', type:'mcq', q:'أي نوع كتابة يهدف إلى عرض الحقائق (exposing facts)؟',
+   opts:['A. Narrative','B. Descriptive','C. Persuasive','D. Expository'],
+   ans:'D', exp:'Expository Writing (الاستعراضية) تهدف إلى عرض الحقائق وتوضيحها.'},
+
+  // ========= LECTURE 2 =========
+  {id:11, lec:'lec2', type:'mcq', q:'صفحة المحتويات (Contents page) ضرورية لأي تقرير يتجاوز:',
+   opts:['A. صفحة واحدة','B. صفحتين','C. ثلاث صفحات','D. خمس صفحات'],
+   ans:'C', exp:'صفحة المحتويات ضرورية لأي تقرير يتجاوز 3 صفحات.'},
+
+  {id:12, lec:'lec2', type:'tf', q:'الملخص (Summary/Abstract) يجب كتابته أولاً قبل كتابة الجسم الرئيسي.',
+   ans:'غلط', exp:'الملخص يُكتب آخراً (wrote at the last of writing) ليعكس ما كُتب فعلاً.'},
+
+  {id:13, lec:'lec2', type:'mcq', q:'كم عدد الفقرات في الملخص الجيد (Good Summary)؟',
+   opts:['A. 3','B. 4','C. 5','D. 7'],
+   ans:'C', exp:'5 فقرات: Intention, Outline, Main findings, Main conclusions, Main recommendations.'},
+
+  {id:14, lec:'lec2', type:'fill', q:'المراجع (References) تُدرج بنفس _______ ورودها في التقرير.',
+   ans:'ترتيب / order', exp:'References تُدرج بنفس الترتيب الذي أُشير إليه في التقرير.'},
+
+  {id:15, lec:'lec2', type:'mcq', q:'ما الفرق الرئيسي بين References وBibliography؟',
+   opts:['A. References أطول من Bibliography','B. Bibliography قد تشمل مصادر لم يُشر إليها في النص، بينما References تُدرج المذكورة فقط','C. لا فرق بينهما','D. References للكتب و Bibliography للمواقع الإلكترونية'],
+   ans:'B', exp:'Bibliography قد تشمل كتباً ودوريات لم يُشَر إليها في النص، بينما References تشمل ما أُشير إليه فقط.'},
+
+  {id:16, lec:'lec2', type:'mcq', q:'الـ Hierarchy Test في اختبارات الهيكل العظمي يتحقق من:',
+   opts:['A. أن كل مكون ضروري','B. أن العناوين بنفس المرتبة تمثل موضوعات بنفس الأهمية','C. أن العناصر في التسلسل الصحيح','D. أن العناصر متوازية نحوياً'],
+   ans:'B', exp:'Hierarchy Test يتحقق من أن العناصر متوازية هرمياً – عناوين بنفس المرتبة تمثل موضوعات بنفس الأهمية.'},
+
+  {id:17, lec:'lec2', type:'tf', q:'الـ Foreword في التقرير يُكتب عادةً بواسطة كاتب التقرير نفسه.',
+   ans:'غلط', exp:'الـ Foreword يُكتب بواسطة خبير آخر معترف به في المجال، ليس كاتب التقرير.'},
+
+  {id:18, lec:'lec2', type:'mcq', q:'التوصيات (Recommendations) في التقرير تختلف عن الاستنتاجات (Conclusions) في أنها:',
+   opts:['A. تتحدث عن الماضي','B. تتحدث عن الحاضر','C. تنظر إلى المستقبل','D. تكرر ما جاء في الاستنتاجات'],
+   ans:'C', exp:'الاستنتاجات تتعلق بالماضي/الحاضر، بينما التوصيات تنظر إلى المستقبل.'},
+
+  {id:19, lec:'lec2', type:'theory', q:'اشرح الـ 7 اختبارات للهيكل العظمي مع مثال على كل منها.',
+   ans:'1. Necessity test: هل كل مكون ضروري؟ مثال: Glossary غير ضروري إذا كان الجميع يعرف المصطلحات\n2. Inclusion test: هل جميع العناصر المناسبة مدرجة؟\n3. Exclusion test: هل العناصر غير المناسبة مستبعدة؟\n4. Hierarchy test: هل العناصر متوازية هرمياً؟\n5. Sequence test: هل ترتيب العناصر صحيح (verb أو noun type)؟\n6. Language test: هل العناصر متوازية نحوياً؟ مثال: كلها تنتهي بـ -ing\n7. Numbering test: هل نظام الترقيم مناسب ومتسق؟'},
+
+  {id:20, lec:'lec2', type:'fill', q:'الـ Index (الفهرس) ضروري فقط للتقارير الـ _______ ويُوضع في نهايتها أبجدياً.',
+   ans:'كبيرة / large', exp:'Index ضروري فقط للتقارير الكبيرة ويُدرج أبجدياً في نهاية التقرير.'},
+
+  {id:21, lec:'lec2', type:'mcq', q:'الـ Language Test في اختبارات الهيكل العظمي يتحقق من:',
+   opts:['A. دقة الأرقام والبيانات','B. التوازي النحوي للعناصر (grammatically parallel)','C. وجود مكونات غير ضرورية','D. ترتيب العناصر'],
+   ans:'B', exp:'Language test يتحقق من أن العناصر في الموديول متوازية نحوياً (مثلاً: كلها أفعال تنتهي بـ -ing).'},
+
+  // ========= LECTURE 3 =========
+  {id:22, lec:'lec3', type:'mcq', q:'ما هي الخطوة الأولى في مراحل البحث؟',
+   opts:['A. Evaluating your findings','B. Obtaining the information','C. Locate sources of relevant information','D. Sort and group your findings'],
+   ans:'C', exp:'أول خطوة هي تحديد مصادر المعلومات ذات الصلة (Locate sources of relevant information).'},
+
+  {id:23, lec:'lec3', type:'fill', q:'في طريقة SQ3R للقراءة، الحرف Q يرمز إلى _______.',
+   ans:'Question', exp:'S=Survey, Q=Question, R=Read, R=Recall, R=Review'},
+
+  {id:24, lec:'lec3', type:'mcq', q:'الاستبيان (Questionnaire) يبحث عن نوعين من المعلومات هما:',
+   opts:['A. كمية ونوعية','B. Factual (حقائق) و Opinion (آراء)','C. أولية وثانوية','D. رسمية وغير رسمية'],
+   ans:'B', exp:'الاستبيان يبحث عن: Factual (مثل كم مرة تشتري المنتج؟) و Opinion (مثل ما رأيك في المنتج؟).'},
+
+  {id:25, lec:'lec3', type:'tf', q:'عند تقييم النتائج، يكفي تقييم موثوقيتها فقط دون الاهتمام بأهميتها.',
+   ans:'غلط', exp:'التقييم له جانبان: How reliable (الموثوقية) وHow significant (الأهمية).'},
+
+  {id:26, lec:'lec3', type:'mcq', q:'كم عدد العوامل التي يجب الحكم بها على موثوقية المعلومات؟',
+   opts:['A. 2','B. 3','C. 4','D. 5'],
+   ans:'C', exp:'4 عوامل: Accuracy (الدقة)، Objectivity (الموضوعية)، Completeness (الاكتمال)، Strength (القوة).'},
+
+  {id:27, lec:'lec3', type:'mcq', q:'متى تكون الأدلة قوية (Strong)؟ اختر الإجابة الأكثر شمولاً:',
+   opts:['A. عندما تكون مكتوبة من مصادر حكومية فقط','B. عندما يمكن التحقق منها وتوصل مراقبون مستقلون للنتيجة نفسها','C. عندما تكون جديدة ومنشورة مؤخراً','D. عندما تدعمها صورة واحدة'],
+   ans:'B', exp:'الأدلة قوية عند إمكانية التحقق أو الإعادة، وتوافق مراقبون مستقلون، وكثرة الملاحظات المتسقة، والاتفاق مع المعرفة العامة.'},
+
+  {id:28, lec:'lec3', type:'fill', q:'في مرحلة Survey بطريقة SQ3R، تصفح المادة يستغرق عادةً _______ دقائق.',
+   ans:'5-10', exp:'Survey يستغرق 5-10 دقائق لتصفح المادة والحصول على فكرة عامة.'},
+
+  {id:29, lec:'lec3', type:'theory', q:'اشرح مراحل البحث الـ6 بالترتيب وما الفرق بين Evaluating وPrioritizing؟',
+   ans:'مراحل البحث:\n1. Locate sources – تحديد المصادر\n2. Obtain the information – جمع المعلومات\n3. Sort and group – فرز وتجميع النتائج\n4. Evaluate – تقييم النتائج (موثوقية + أهمية)\n5. Prioritizing – تحديد الأولويات\n6. Check – التحقق\n\nالفرق:\n- Evaluating: تقييم مدى موثوقية وأهمية كل نتيجة\n- Prioritizing: إبراز النتائج الأكثر أهمية وترتيبها وشرح سبب أهميتها'},
+
+  {id:30, lec:'lec3', type:'mcq', q:'أي طريقة من طرق جمع المعلومات تكون بواسطة عالم مدرب يصممها؟',
+   opts:['A. Reading','B. Questionnaire','C. Experimentation','D. Interview'],
+   ans:'C', exp:'Experimentation (التجريب) تكون بواسطة عالم مدرب يصمم التجربة ويؤديها بطريقة مقبولة.'},
+
+  // ========= LECTURE 4 =========
+  {id:31, lec:'lec4', type:'mcq', q:'في ترتيب الكتابة والمراجعة، ما هو الترتيب الصحيح؟',
+   opts:['A. كتابة الاستنتاجات أولاً ثم الجسم الرئيسي','B. Pre-write ← Draft main body ← Review ← Draft conclusions/intro ← Check ← Issue','C. كتابة الملخص أولاً ثم المقدمة','D. كتابة المقدمة أولاً ثم الجسم الرئيسي'],
+   ans:'B', exp:'الترتيب: Pre-write → Draft main body & appendixes → Review → Draft conclusions/recommendations/intro/summary → Check & amend → Issue.'},
+
+  {id:32, lec:'lec4', type:'tf', q:'الاستنتاجات والتوصيات والمقدمة يمكن كتابتها في أي وقت أثناء كتابة التقرير.',
+   ans:'غلط', exp:'هذه الأقسام لا تُكتب إلا بعد الانتهاء من الجسم الرئيسي والملاحق ومراجعتها.'},
+
+  {id:33, lec:'lec4', type:'mcq', q:'كم عدد الأشخاص الذين يشاركون في التحقق من المسودة الأولى؟',
+   opts:['A. 1','B. 2','C. 3','D. 4'],
+   ans:'C', exp:'3 أشخاص: Yourself (أنت) + A colleague (زميل) + Your line manager (مديرك المباشر).'},
+
+  {id:34, lec:'lec4', type:'fill', q:'أول خطوة في مراحل تقييم المدير هي _______ والتي تعني فهم ما يحاول التقرير تحقيقه.',
+   ans:'Assimilate (استيعاب)', exp:'Assimilate (استيعاب) هي أول خطوة في تقييم المدير.'},
+
+  {id:35, lec:'lec4', type:'mcq', q:'التدقيق اللغوي (Proofreading) يصحح 3 أنواع من الأخطاء، أيها لا ينتمي لهذه الأنواع؟',
+   opts:['A. Substantive error','B. Sequencing error','C. Formatting error','D. Misspelling errors (homophones)'],
+   ans:'C', exp:'الأنواع الـ3 هي: Substantive error، Sequencing error، Misspelling errors (homophones). Formatting error ليس أحد الأنواع الثلاثة.'},
+
+  {id:36, lec:'lec4', type:'mcq', q:'الكلمتان "foreword" و "forward" هما مثال على:',
+   opts:['A. Substantive errors','B. Sequencing errors','C. Homophones (المتجانسات)','D. Formatting errors'],
+   ans:'C', exp:'Foreword وForward هما متجانسان (homophones) – كلمات تُنطق بشكل مشابه لكن معناها مختلف.'},
+
+  {id:37, lec:'lec4', type:'tf', q:'"The better your first draft, the better your final draft will be" – هذا يعني يجب الاعتناء بالمسودة الأولى.',
+   ans:'صح', exp:'المسودة الأولى يجب كتابتها بجدية كما لو كانت المسودة النهائية، لأن جودتها ترتبط مباشرة بجودة المنتج النهائي.'},
+
+  {id:38, lec:'lec4', type:'theory', q:'اشرح 5 تقنيات من تقنيات التدقيق اللغوي (Proofreading) الفعّال.',
+   ans:'1. Let someone else read it – دع شخصاً آخر يقرأه (يرى ما لم تره أنت)\n2. Read backwards – اقرأ من الخلف للأمام (يساعد على اكتشاف الأخطاء الإملائية)\n3. Use the gestation approach – استراتيجية الحضانة (ترك التقرير لفترة ثم العودة إليه)\n4. Read one line at a time – اقرأ سطراً واحداً في كل مرة\n5. Read long words syllable by syllable – اقرأ الكلمات الطويلة مقطعاً مقطعاً\n6. Read it out loud – اقرأه بصوت عالٍ\n7. Use a dictionary – استخدم القاموس'},
+
+  {id:39, lec:'lec4', type:'mcq', q:'مرحلة Pre-writing تشمل 3 عناصر رئيسية، أيها لا ينتمي إليها؟',
+   opts:['A. Targeting – تذكر القراء','B. Outlining – تذكر الهدف والغرض','C. Structuring – مراجعة الهيكل','D. Drafting – كتابة الجسم الرئيسي'],
+   ans:'D', exp:'مرحلة Pre-writing تشمل: Targeting، Outlining، Structuring. أما Drafting فهو مرحلة منفصلة تالية.'},
+
+  // ========= LECTURE 5 =========
+  {id:40, lec:'lec5', type:'mcq', q:'ما هو معيار الهوامش الصحيح للمستندات التقنية؟',
+   opts:['A. 1 سم من كل جانب','B. 1.5 سم من كل جانب','C. 2.54 سم من كل جانب','D. 3 سم من كل جانب'],
+   ans:'C', exp:'الهوامش القياسية: 2.54 سم (1 بوصة) من كل جانب (يمين – يسار – أعلى – أسفل).'},
+
+  {id:41, lec:'lec5', type:'tf', q:'الـ Strikethrough يُستخدم للنص الذي تريد تمييزه بشكل خاص.',
+   ans:'غلط', exp:'الـ Strikethrough (خط مشطوب) يُشير إلى نص محذوف لم يعد مطلوباً.'},
+
+  {id:42, lec:'lec5', type:'fill', q:'وزن الورق يُقاس بـ _______ (الاختصار).',
+   ans:'GSM', exp:'GSM = Grams per Square Meter – جرام لكل متر مربع.'},
+
+  {id:43, lec:'lec5', type:'mcq', q:'كم عدد الأعمدة الموصى بها في الأوراق التقنية؟',
+   opts:['A. عمود واحد','B. عمودان','C. 3 أعمدة','D. 4 أعمدة'],
+   ans:'B', exp:'الموصى به في الأوراق التقنية هو عمودان (2 columns).'},
+
+  {id:44, lec:'lec5', type:'mcq', q:'أكثر تقنيات التمييز (Emphasis) فاعلية هي:',
+   opts:['A. تغيير لون الخلفية','B. استخدام مربعات النص','C. Underlining, Boldface, Italic, Change size, Change color','D. إضافة صور كثيرة'],
+   ans:'C', exp:'أكثر تقنيات التمييز فاعلية: التسطير (Underlining)، الخط العريض (Boldface)، المائل (Italic)، تغيير الحجم، تغيير اللون.'},
+
+  {id:45, lec:'lec5', type:'tf', q:'يمكن تثبيت خطوط مخصصة في Microsoft Word عن طريق تنزيل ملف TTF أو OTF ثم النقر بزر اليمين.',
+   ans:'صح', exp:'لتثبيت خطوط مخصصة: تنزيل الخط (TTF أو OTF)، استخراج الملفات، ثم النقر بزر اليمين لتثبيتها في Windows.'},
+
+  {id:46, lec:'lec5', type:'theory', q:'اشرح الفرق بين محاذاة النص الأربعة مع ذكر متى يُستخدم كل منها.',
+   ans:'1. Left justification (محاذاة يسار): النص يبدأ من اليسار، يستخدم في معظم المستندات الإنجليزية\n2. Right justification (محاذاة يمين): يبدأ من اليمين، للغات من اليمين لليسار\n3. Center justification (توسيط): للعناوين والعناصر التي تحتاج بروزاً بصرياً\n4. Full justification (ضبط كامل): النص منظم على الحافتين معاً، الأكثر استخداماً في التقارير التقنية لمظهره الأنيق'},
+
+  {id:47, lec:'lec5', type:'mcq', q:'ما الفرق بين Subscript وSuperscript؟',
+   opts:['A. Subscript فوق السطر وSuperscript تحته','B. Subscript تحت السطر (H₂O) وSuperscript فوقه (m²)','C. لا فرق بينهما','D. Subscript للأرقام فقط وSuperscript للحروف'],
+   ans:'B', exp:'Subscript منخفض تحت السطر (مثل: H₂O)، بينما Superscript مرتفع فوق السطر (مثل: m²).'},
+
+  // ========= LECTURE 6 =========
+  {id:48, lec:'lec6', type:'mcq', q:'مهارات العرض (Presentation Skills) تُعرَّف بأنها:',
+   opts:['A. مهارة كتابة التقارير التقنية','B. طريقة بصرية للتواصل ونقل المعرفة والفهم إلى الجمهور','C. أسلوب تنسيق الشرائح','D. طريقة لطباعة المستندات'],
+   ans:'B', exp:'مهارات العرض هي طريقة بصرية للتواصل ونقل المعرفة والفهم لموضوع ما إلى الجمهور.'},
+
+  {id:49, lec:'lec6', type:'mcq', q:'كم عدد خطوات الكتابة الناجحة (Writing Process)؟',
+   opts:['A. 3','B. 4','C. 5','D. 6'],
+   ans:'C', exp:'5 خطوات: Planning, Drafting, Revising, Editing, Proofreading.'},
+
+  {id:50, lec:'lec6', type:'tf', q:'مخطط الدائرة (Pie Chart) مناسب لمقارنة الاتجاهات عبر الزمن.',
+   ans:'غلط', exp:'Pie Chart يُظهر النسب المئوية والحصص. لمقارنة الاتجاهات عبر الزمن يُستخدم Line Graph.'},
+
+  {id:51, lec:'lec6', type:'fill', q:'مخطط جانت (Gantt Chart) هو نوع فرعي من مخطط _______ يُستخدم في إدارة المشاريع.',
+   ans:'الأعمدة / Bar Chart', exp:'Gantt Chart هو subtype من Bar Chart يُظهر فئات مختلفة عبر فترة زمنية.'},
+
+  {id:52, lec:'lec6', type:'mcq', q:'في مخطط التدفق (Flow Chart)، الشكل الذي يمثل القرار (Decision) هو:',
+   opts:['A. المستطيل','B. الدائرة','C. المعين (Diamond)','D. المثلث'],
+   ans:'C', exp:'المعين (Diamond) يمثل القرار في Flow Chart، بينما المستطيل يمثل خطوة عملية.'},
+
+  {id:53, lec:'lec6', type:'mcq', q:'أي من التالي يعد من عيوب مخطط الدائرة (Pie Chart Disadvantages)؟',
+   opts:['A. صعوبة إظهار النسب المئوية','B. لا يُظهر مقارنات بين الفئات','C. صعوبة مقارنة مجموعتي بيانات','D. لا يُظهر الإجمالي الكلي'],
+   ans:'C', exp:'من عيوب Pie Chart: لا تستخدم أكثر من 10 أقسام، لا يقدم بيانات عددية دقيقة، صعوبة مقارنة مجموعتي بيانات.'},
+
+  {id:54, lec:'lec6', type:'theory', q:'قارن بين Bar Chart وLine Graph من حيث: الاستخدام – المزايا – الإرشادات.',
+   ans:'Bar Chart:\n- الاستخدام: مقارنة الفئات (Comparing categories)\n- الإرشادات: استخدام عدد محدود من الأعمدة، إظهار المقارنة بعناية، الحفاظ على تساوي عرض الأعمدة، الإبداع في الألوان\n\nLine Graph:\n- الاستخدام: عرض الاتجاهات عبر الزمن (Trends over time)\n- الإرشادات: استخدمه للاتجاهات، ضعه بعناية في التقرير، استخدم خطوطاً متعددة بحذر، اسعَ للدقة والوضوح'},
+
+  {id:55, lec:'lec6', type:'mcq', q:'المخطط التنظيمي (Organizational Chart) يُظهر:',
+   opts:['A. توزيع الميزانية عبر الزمن','B. مراحل تطور المشروع','C. الأدوار والمواقع وعلاقات التقارير داخل المنظمة','D. مقارنة بين المنتجات المختلفة'],
+   ans:'C', exp:'Org Chart يُظهر الأدوار والمواقع وعلاقات التقارير، مما يساعد على فهم سلطة المنظمة ومسؤوليتها وتدفق الاتصالات.'},
+
+  {id:56, lec:'lec6', type:'tf', q:'مرحلة التخطيط (Planning) في الكتابة قد تستغرق أكثر من ثلث الوقت الإجمالي.',
+   ans:'صح', exp:'Planning قد تستغرق أكثر من ثلث الوقت الإجمالي للمشروع الكتابي.'},
+
+  // ========= LECTURE 7 =========
+  {id:57, lec:'lec7', type:'mcq', q:'كيف يُنطق اسم LaTeX بشكل صحيح؟',
+   opts:['A. «لا-تيكس»','B. «لا-تيك» (Lah-tech)','C. «لاتيكس»','D. «لايتكس»'],
+   ans:'B', exp:'LaTeX يُنطق «Lah-tech».'},
+
+  {id:58, lec:'lec7', type:'tf', q:'LaTeX هو معالج نصوص (word processor) مثل Microsoft Word.',
+   ans:'غلط', exp:'LaTeX ليس معالج نصوص. يُشجع المؤلفين على التركيز على المحتوى وليس المظهر.'},
+
+  {id:59, lec:'lec7', type:'fill', q:'في LaTeX، لإضافة تعليق (Comment) نضع رمز _______ في بداية السطر.',
+   ans:'% (بالمئة)', exp:'رمز % يُضاف في بداية السطر لجعله تعليقاً لا يُطبع في المستند.'},
+
+  {id:60, lec:'lec7', type:'mcq', q:'ما معنى WYSIWYG في سياق عيوب LaTeX؟',
+   opts:['A. What You Study Is What You Get','B. What You See Is What You Get','C. When You Start Is When You Get','D. What You Share Is What You Give'],
+   ans:'B', exp:'WYSIWYG = "What You See Is What You Get" – ما تراه هو ما تحصل عليه. LaTeX يفتقر إلى هذه الميزة.'},
+
+  {id:61, lec:'lec7', type:'mcq', q:'أي الأوامر يُستخدم لإنشاء قائمة غير مرتبة في LaTeX؟',
+   opts:['A. \\begin{enumerate}','B. \\begin{list}','C. \\begin{itemize}','D. \\begin{bullet}'],
+   ans:'C', exp:'\\begin{itemize} يُستخدم للقائمة غير المرتبة (Unordered list)، بينما \\begin{enumerate} للقائمة المرتبة.'},
+
+  {id:62, lec:'lec7', type:'tf', q:'Overleaf هو محرر LaTeX يعمل عبر الإنترنت ويدعم التعاون المتزامن.',
+   ans:'صح', exp:'Overleaf هو محرر LaTeX تعاوني عبر الإنترنت يوفر تتبع التغييرات في الوقت الحقيقي ومتعاونين غير محدودين.'},
+
+  {id:63, lec:'lec7', type:'mcq', q:'في LaTeX، الأمر \\textbf{...} يُستخدم لـ:',
+   opts:['A. تمييز النص بلون مختلف','B. جعل النص عريضاً (Bold)','C. جعل النص مائلاً (Italic)','D. تسطير النص'],
+   ans:'B', exp:'\\textbf{...} = text bold font – خط عريض.'},
+
+  {id:64, lec:'lec7', type:'theory', q:'قارن بين مزايا وعيوب LaTeX مع ذكر متى يُفضل استخدامه.',
+   ans:'المزايا:\n1. Quality Typesetting – طباعة عالية الجودة خاصةً للوثائق العلمية\n2. Cross-Referencing – يبسّط الإشارات المتقاطعة للمعادلات والأشكال\n3. Version Control – يسهّل التحكم في الإصدار\n4. Customization – تخصيص واسع للتنسيق\n\nالعيوب:\n1. Learning Curve – منحنى تعلم شاق للمبتدئين\n2. Limited WYSIWYG – غياب التغذية البصرية الفورية\n3. Code-based – يتطلب كتابة كود\n\nمتى يُستخدم:\n- الأوراق الأكاديمية والرسائل العلمية\n- التقارير العلمية والمقالات\n- التوثيق التقني والعروض (Beamer)'},
+
+  {id:65, lec:'lec7', type:'mcq', q:'لكتابة معادلة رياضية داخل السطر في LaTeX، نستخدم:',
+   opts:['A. \\begin{equation}...\\end{equation}','B. $...$ أو \\(... \\)','C. \\math{...}','D. \\formula{...}'],
+   ans:'B', exp:'للمعادلات داخل السطر (inline math) نستخدم: $...$ أو \\(...\\) أو \\begin{math}...\\end{math}.'},
+
+  // ========= LECTURE 8 =========
+  {id:66, lec:'lec8', type:'mcq', q:'في السيرة الذاتية (CV)، كيف يُكتب الاسم؟',
+   opts:['A. بالاسم الكامل مع لقب Mr. أو Ms.','B. بالاسم الكامل فقط بدون ألقاب عامة','C. بالاسم الأول فقط','D. بالأحرف الأولى من الاسم'],
+   ans:'B', exp:'في السيرة الذاتية يُكتب الاسم الكامل بدون ألقاب عامة مثل Mr. أو Ms.'},
+
+  {id:67, lec:'lec8', type:'tf', q:'في محضر الاجتماع (Minutes of Meeting)، عدد الأعمدة في قسم Absentees هو عمودان.',
+   ans:'غلط', exp:'قسم Absentees يتكون من 3 أعمدة: الاسم، الأدوار، أسباب الغياب. بينما Attendees عمودان.'},
+
+  {id:68, lec:'lec8', type:'fill', q:'جدول الأعمال (Agenda) يُسمى أيضاً _______ أو _______.',
+   ans:'docket أو schedule', exp:'Agenda يُسمى أيضاً docket أو schedule.'},
+
+  {id:69, lec:'lec8', type:'mcq', q:'تقرير الجدوى (Feasibility Report) يهدف إلى:',
+   opts:['A. وصف الهيكل التنظيمي للشركة','B. التحقيق فيما إذا كان يجب تنفيذ مشروع ما','C. تسجيل وقائع الاجتماعات','D. تقديم السيرة الذاتية للمتقدمين'],
+   ans:'B', exp:'Feasibility report يبحث فيما إذا كان يجب تنفيذ مشروع ما (whether to undertake a project).'},
+
+  {id:70, lec:'lec8', type:'mcq', q:'في تقرير المقابلة المنظمة (Structured Interview Report)، ما معنى "Attainment"؟',
+   opts:['A. المظهر الخارجي للمتقدم','B. الظروف الاجتماعية والعائلية','C. الإنجاز (العمل، التعليمي، التجريبي)','D. الاهتمامات والهوايات'],
+   ans:'C', exp:'"Attainment" تعني الإنجاز (اﻹجنجاز) وتشمل: العمل، التعليمي، التجريبي.'},
+
+  {id:71, lec:'lec8', type:'tf', q:'التقرير التقني (Technical Report) هو وثيقة منشورة تُوجه القراء بوضوح عبر مسار عملك.',
+   ans:'صح', exp:'نعم، التقرير التقني وثيقة منشورة تصف كيفية نقل البحث وتوجه القراء بوضوح.'},
+
+  {id:72, lec:'lec8', type:'mcq', q:'أي من التالي لا يُعدّ من أنواع التقارير التقنية الثلاثة المذكورة؟',
+   opts:['A. Feasibility report','B. Business report','C. Interview report','D. Technical specification report'],
+   ans:'C', exp:'الأنواع الـ3 للتقارير التقنية: Feasibility report، Business report، Technical specification report. Interview report ليس منها.'},
+
+  {id:73, lec:'lec8', type:'fill', q:'في التقرير التقني، الـ _______ يُعدّ بوصلة لهيكل التقرير ويسهّل التنقل بين الأقسام.',
+   ans:'Table of Contents', exp:'Table of Contents يعمل كبوصلة لهيكل التقرير.'},
+
+  {id:74, lec:'lec8', type:'mcq', q:'ما الفرق بين Foreword وAcknowledgment في التقرير التقني؟',
+   opts:['A. Foreword للشكر، Acknowledgment لقائمة المصادر','B. Foreword للاعتراف بالمصادر، Acknowledgment للاعتراف بالأشخاص والمؤسسات الداعمة','C. لا فرق بينهما','D. Foreword في البداية والAcknowledgment في النهاية فقط'],
+   ans:'B', exp:'Foreword: الاعتراف بجميع المصادر المستخدمة. Acknowledgment: الاعتراف بالأشخاص والمؤسسات الذين ساعدوا في إتمام التقرير.'},
+
+  {id:75, lec:'lec8', type:'theory', q:'قارن بين Minutes of Meeting وAgenda من حيث التعريف والهدف والمكونات الرئيسية.',
+   ans:'Minutes of Meeting:\n- التعريف: السجل المكتوب المباشر للاجتماع\n- الهدف: تسجيل ما تم تكليف كل شخص به مع الإنجازات والمواعيد النهائية\n- المكونات: اسم الشركة (يسار) + التاريخ (يمين) + الموضوع + الحاضرون (عمودان) + الغائبون (3 أعمدة) + جدول الأعمال + القضايا المطروحة + الاقتراحات + القرار + الاجتماعات المستقبلية\n\nAgenda (جدول أعمال):\n- التعريف: قائمة بالأنشطة بالترتيب من البداية حتى النهاية\n- الهدف: التحضير للاجتماع وتوفير موضوعات وأهداف وأطر زمنية واضحة\n- المكونات: عنوان + معلومات الاجتماع + هدف + تاريخ + مكان + وقت + نوع الاجتماع + وقت البداية والنهاية + الحاضرون + التحضير (Please Read/Bring) + Action Items'},
+
+  {id:76, lec:'lec8', type:'mcq', q:'في هيكل تقرير الطالب (Student Project Report)، ما هو الترتيب الصحيح للمكونات؟',
+   opts:['A. المقدمة ← الغلاف ← الاستنتاجات ← الجسم الرئيسي','B. صفحة الغلاف ← صفحة المحتويات ← المقدمة ← الجسم الرئيسي ← الاستنتاجات ← المراجع','C. الاستنتاجات ← المقدمة ← الجسم الرئيسي ← المراجع','D. الجسم الرئيسي ← المقدمة ← الغلاف ← المراجع'],
+   ans:'B', exp:'الترتيب: Cover page → Contents page → Introduction → Main body → Conclusions → Recommendations (optional) → Appendices → Sources/references.'},
+
+  {id:77, lec:'lec8', type:'mcq', q:'في السيرة الذاتية، المؤهلات الأكاديمية تُدرج من:',
+   opts:['A. الأقدم للأحدث','B. الأحدث للأقدم (newer)','C. أبجدياً حسب اسم الجامعة','D. حسب الدرجة العلمية'],
+   ans:'B', exp:'المؤهلات الأكاديمية تُدرج من الأحدث إلى الأقدم (from the newer).'},
+
+  {id:78, lec:'lec8', type:'theory', q:'ما هي مكونات السيرة الذاتية (CV) الكاملة؟ اذكرها بالترتيب.',
+   ans:'1. Name – الاسم الكامل بدون ألقاب (No Mr./Ms.)\n2. Address – العنوان الدائم\n3. Summary – وصف موجز للإنجازات المهنية\n4. Academic Qualification – المؤهلات من الأحدث للأقدم\n5. Additional Knowledge – مهارات خارج المهنة\n6. Acquired Skills – المهارات الناعمة (Soft Skills)\n7. Programming Languages – إن وُجدت\n8. Software Tools – مثل MS Word, Excel\n9. Operating System Platforms – مثل Windows, Mac\n10. Database Management System – إن وُجد\n11. Personal Skills – مهارات شخصية\n12. Experience Breakdown – شرح تفصيلي للخبرة\n13. Achievements & Interests – الإنجازات والهوايات\n14. References – المراجع\n15. Declaration – إقرار بصحة المعلومات'},
+
+];
+
+// ============================
+// RENDER QUESTIONS
+// ============================
+let revealedCount = 0;
+let currentFilter = 'all';
+
+function renderQuestions(filter) {
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+  
+  let filtered = questions;
+  if (filter === 'mcq') filtered = questions.filter(q=>q.type==='mcq');
+  else if (filter === 'tf') filtered = questions.filter(q=>q.type==='tf');
+  else if (filter === 'fill') filtered = questions.filter(q=>q.type==='fill');
+  else if (filter === 'theory') filtered = questions.filter(q=>q.type==='theory');
+  else if (filter !== 'all') filtered = questions.filter(q=>q.lec===filter);
+
+  document.getElementById('totalQ').textContent = filtered.length;
+  revealedCount = 0;
+  document.getElementById('revealedQ').textContent = 0;
+  updateProgress(0, filtered.length);
+
+  filtered.forEach((q,idx) => {
+    const typeLabels = {mcq:'اختيار من متعدد', tf:'صح / غلط', fill:'أكمل الفراغ', theory:'سؤال نظري'};
+    const typeBadge = {mcq:'badge-mcq', tf:'badge-tf', fill:'badge-fill', theory:'badge-theory'};
+    const lecLabel = {lec1:'م1',lec2:'م2',lec3:'م3',lec4:'م4',lec5:'م5',lec6:'م6',lec7:'م7',lec8:'م8'};
+
+    let innerHTML = `
+      <div class="q-type-badge ${typeBadge[q.type]}">${typeLabels[q.type]}</div>
+      <span class="q-type-badge" style="background:rgba(148,163,184,0.1);color:var(--text-muted);border:1px solid var(--border)">${lecLabel[q.lec]}</span>
+      <div class="q-text"><span class="q-num">س${idx+1}.</span> ${q.q}</div>
+    `;
+
+    if (q.type === 'mcq') {
+      innerHTML += `<div class="options">`;
+      q.opts.forEach(opt => {
+        const letter = opt[0];
+        innerHTML += `<button class="option-btn" onclick="checkMCQ(this,'${letter}','${q.ans}','q${q.id}')">${opt}</button>`;
+      });
+      innerHTML += `</div>`;
+    } else if (q.type === 'tf') {
+      innerHTML += `<div class="options">
+        <button class="option-btn" onclick="checkTF(this,'صح','${q.ans}','q${q.id}')">✅ صح</button>
+        <button class="option-btn" onclick="checkTF(this,'غلط','${q.ans}','q${q.id}')">❌ غلط</button>
+      </div>`;
+    } else if (q.type === 'fill') {
+      innerHTML += `<input class="fill-input" type="text" placeholder="اكتب إجابتك هنا..." id="fill-${q.id}">`;
+    } else if (q.type === 'theory') {
+      innerHTML += `<textarea class="theory-area" placeholder="اكتب إجابتك هنا..." id="theory-${q.id}"></textarea>`;
+    }
+
+    innerHTML += `
+      <button class="show-answer-btn" onclick="revealAnswer('q${q.id}')">
+        👁 أظهر الإجابة
+      </button>
+      <div class="answer-reveal" id="q${q.id}">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">${q.ans}${q.exp ? '<br><br><span style="color:var(--text-muted);font-size:.9rem">💡 ' + q.exp + '</span>' : ''}</div>
+      </div>
+    `;
+
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.dataset.qid = `q${q.id}`;
+    card.dataset.lec = q.lec;
+    card.dataset.type = q.type;
+    card.innerHTML = innerHTML;
+    container.appendChild(card);
+  });
+}
+
+function revealAnswer(id) {
+  const el = document.getElementById(id);
+  if (!el.classList.contains('visible')) {
+    el.classList.add('visible');
+    revealedCount++;
+    document.getElementById('revealedQ').textContent = revealedCount;
+    const total = parseInt(document.getElementById('totalQ').textContent);
+    updateProgress(revealedCount, total);
+  }
+}
+
+function updateProgress(current, total) {
+  const pct = total > 0 ? (current/total)*100 : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function checkMCQ(btn, selected, correct, qid) {
+  if (btn.disabled) return;
+  const opts = btn.parentElement.querySelectorAll('.option-btn');
+  opts.forEach(b => {
+    const letter = b.textContent.trim()[0];
+    b.disabled = true;
+    if (letter === correct) b.classList.add('correct');
+    else if (letter === selected && selected !== correct) b.classList.add('wrong');
+  });
+  revealAnswer(qid);
+}
+
+function checkTF(btn, selected, correct, qid) {
+  if (btn.disabled) return;
+  const opts = btn.parentElement.querySelectorAll('.option-btn');
+  opts.forEach(b => b.disabled = true);
+  btn.classList.add(selected === correct ? 'correct' : 'wrong');
+  if (selected !== correct) {
+    opts.forEach(b => { if(b.textContent.includes(correct)) b.classList.add('correct'); });
+  }
+  revealAnswer(qid);
+}
+
+function revealAll() {
+  document.querySelectorAll('.answer-reveal').forEach(el => {
+    if (!el.classList.contains('visible')) {
+      el.classList.add('visible');
+      revealedCount++;
+    }
+  });
+  const total = parseInt(document.getElementById('totalQ').textContent);
+  document.getElementById('revealedQ').textContent = revealedCount;
+  updateProgress(total, total);
+}
+
+function hideAll() {
+  document.querySelectorAll('.answer-reveal').forEach(el => el.classList.remove('visible'));
+  revealedCount = 0;
+  document.getElementById('revealedQ').textContent = 0;
+  const total = parseInt(document.getElementById('totalQ').textContent);
+  updateProgress(0, total);
+}
+
+function resetAll() {
+  hideAll();
+  document.querySelectorAll('.option-btn').forEach(b => {
+    b.disabled = false;
+    b.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.fill-input, .theory-area').forEach(i => i.value = '');
+}
+
+function filterQuiz(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter'));
+  btn.classList.add('active-filter');
+  currentFilter = filter;
+  renderQuestions(filter);
+}
+
+// ============================
+// NAV
+// ============================
+function showPage(id) {
+  document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function toggleBody(header) {
+  const body = header.nextElementSibling;
+  const icon = header.querySelector('.toggle-icon');
+  body.classList.toggle('open');
+  icon.classList.toggle('open');
+}
+
+// Init
+renderQuestions('all');
+</script>
+</body>
+</html>
